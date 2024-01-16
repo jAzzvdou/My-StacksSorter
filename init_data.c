@@ -6,7 +6,7 @@
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 16:38:09 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/01/15 16:55:32 by jazevedo         ###   ########.fr       */
+/*   Updated: 2024/01/16 17:13:16 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,14 +49,14 @@ static int	push_new(t_stack **stack, int value)
 	return (0);
 }
 
-int	init_data(t_data *data, int argc, char **argv)
+int	start_pushswap(t_pushswap *pushswap, int argc, char **argv)
 {
 	long	value;
 
 	while (--argc)
 	{
 		if (!is_integer(argv[argc]))
-			fprintf(stderr, "Error\n\"%s\" is not an integer\n", argv[argc]);
+			write(2, ".ERROR: argc is wrong!.", 23);
 		return (1);
 	}
 	value = strtol(argv[argc], NULL, 10);
@@ -66,7 +66,7 @@ int	init_data(t_data *data, int argc, char **argv)
 		fprintf(stderr, "Error\n\"%s\" overflows\n", argv[argc]);
 		return (1);
 	}
-	if (push_new(&data->stack_a, value))
+	if (push_new(&pushswap->a, value))
 		return (1);
 	return (0);
 }

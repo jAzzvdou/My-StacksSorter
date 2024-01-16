@@ -6,7 +6,7 @@
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 15:09:31 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/01/15 15:15:37 by jazevedo         ###   ########.fr       */
+/*   Updated: 2024/01/16 17:23:09 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 int	main(int argc, char **argv)
 {
-	t_data	data;
+	t_pushswap	pushswap;
 
-	data = {0};
-	if (init_data(&data, argc, argv))
+	pushswap = {0};
+	if (start_pushswap(&pushswap, argc, argv))
 		return (1);
-	print_stacks(&data);
-	while (!is_sorted(data.stack_a) || data.stack_b)
+	debugger(&pushswap);
+	while (!is_sorted(pushswap.a) || pushswap.b)
 	{
 		// Here we will do the sorting algorithm
 	}

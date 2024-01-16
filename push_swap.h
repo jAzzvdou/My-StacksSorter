@@ -6,7 +6,7 @@
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 15:11:33 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/01/15 15:14:05 by jazevedo         ###   ########.fr       */
+/*   Updated: 2024/01/16 17:04:02 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ typedef struct s_stack
 	struct s_stack	*next;
 }	t_stack;
 
-typedef struct s_data
+typedef struct s_pushswap;
 {
-	t_stack	*stack_a;
-	t_stack	*stack_b;
-}	t_data;
+	t_stack	*a;
+	t_stack	*b;
+}	t_pushswap;
 
 // operations utils
 
@@ -32,26 +32,23 @@ int	push(t_stack **stack_from, t_stack **stack_to);
 int	rotate(t_stack **stack);
 int	reverse_rotate(t_stack **stack);
 
-// operations
+//----------OPERATIONS----------//
+int	sa(t_pushswap *pushswap);
+int	sb(t_pushswap *pushswap);
+int	ss(t_pushswap *pushswap);
 
-int	sa(t_data *data);
-int	sb(t_data *data);
-int	ss(t_data *data);
+int	pa(t_pushswap *pushswap);
+int	pb(t_pushswap *pushswap);
 
-int	pa(t_data *data);
-int	pb(t_data *data);
+int	ra(t_pushswap *pushswap);
+int	rb(t_pushswap *pushswap);
+int	rr(t_pushswap *pushswap);
 
-int	ra(t_data *data);
-int	rb(t_data *data);
-int	rr(t_data *data);
+int	rra(t_pushswap *pushswap);
+int	rrb(t_pushswap *pushswap);
+int	rrr(t_pushswap *pushswap);
 
-int	rra(t_data *data);
-int	rrb(t_data *data);
-int	rrr(t_data *data);
-
-// init
-
-int	init_data(t_data *data, int argc, char *argv[]);
+int	start_pushswap(t_pushswap *pushswap, int argc, char **argv);
 
 // utils
 
@@ -59,6 +56,6 @@ int	is_sorted(t_stack *stack);
 
 // debug
 
-int	print_stacks(t_data *data);
+int	debugger(t_pushswap *pushswap);
 
 #endif //PUSH_SWAP

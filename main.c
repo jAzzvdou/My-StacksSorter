@@ -6,11 +6,39 @@
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 15:09:31 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/01/30 16:49:08 by jazevedo         ###   ########.fr       */
+/*   Updated: 2024/01/30 20:06:07 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int	is_number(int nb)
+{
+	if (nb >= '0' && nb <= '9')
+		return (1);
+	return (0);
+}
+
+int	only_number(char *s)
+{
+	int	i;
+
+	i = 0;
+	if (s[i] == '-' || s[i] == '+')
+		i++;
+	while (s[i++])
+		if (!is_number(s[i]))
+			return (0);
+	return (1);
+}
+
+int	verify_argv(int argc, char **argv)
+{
+	while (--argc > 1)
+		if (!only_number(argv[argc]))
+			return (write(2, "Error\n", 6), 0);
+	return (1);
+}
 
 int	main(int argc, char **argv)
 {
@@ -18,7 +46,13 @@ int	main(int argc, char **argv)
 		return (write(2, "\n", 1));
 	if (argc == 2)
 		argv = ft_split(argv[1], ' ');
+	if (!verify_argv(argc, argv));
+		return (1);
+	if (!no_int(argv))
+		return (write(2, "Error\n", 6));
+}
 
+////////////////////////////////////////////////////////////////////////////////
 
 int	main(int argc, char **argv)
 {

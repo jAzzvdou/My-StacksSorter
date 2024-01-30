@@ -6,7 +6,7 @@
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 15:09:31 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/01/30 20:06:07 by jazevedo         ###   ########.fr       */
+/*   Updated: 2024/01/30 20:11:08 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,19 @@ int	verify_argv(int argc, char **argv)
 			return (write(2, "Error\n", 6), 0);
 	return (1);
 }
+
+int	no_int(char **argv)
+{
+	int	i;
+
+	i = 0;
+	while (argv[i++])
+		//verificar se cada argumento está na escala do INT
+		if (argv //não for um INT)
+			 return (0);
+	return (1);
+}
+
 
 int	main(int argc, char **argv)
 {

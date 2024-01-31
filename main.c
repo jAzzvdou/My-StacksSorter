@@ -6,7 +6,7 @@
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 15:09:31 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/01/30 20:11:08 by jazevedo         ###   ########.fr       */
+/*   Updated: 2024/01/31 00:19:32 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,19 +36,21 @@ int	verify_argv(int argc, char **argv)
 {
 	while (--argc > 1)
 		if (!only_number(argv[argc]))
-			return (write(2, "Error\n", 6), 0);
+			return (0);
 	return (1);
 }
 
-int	no_int(char **argv)
+int	is_int(char **argv)
 {
 	int	i;
 
 	i = 0;
 	while (argv[i++])
-		//verificar se cada argumento está na escala do INT
-		if (argv //não for um INT)
-			 return (0);
+	{
+		if (strlen(argv[i] > 11 || ft_atol(argv[i]) > 2147483647
+			|| ft_atol(argv[i]) < -2147483648)
+			return (0);
+	}
 	return (1);
 }
 
@@ -60,9 +62,11 @@ int	main(int argc, char **argv)
 	if (argc == 2)
 		argv = ft_split(argv[1], ' ');
 	if (!verify_argv(argc, argv));
-		return (1);
-	if (!no_int(argv))
 		return (write(2, "Error\n", 6));
+	if (!is_int(argv))
+		return (write(2, "Error\n", 6));
+	
+	return (0);
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -82,11 +86,11 @@ int	main(int argc, char **argv)
 	return (0);
 }
 
-//SE FOR CARACTERES NÃO NUMÉRICOS: Error\n
-//SE FOR ACIMA DO MAXINT: Error\n
-//SE FOR ABAIXO DO MININT: Error\n
+//SE FOR CARACTERES NÃO NUMÉRICOS: Error\n ---------- CHECK
+//SE FOR ACIMA DO MAXINT: Error\n ---------- CHECK
+//SE FOR ABAIXO DO MININT: Error\n ---------- CHECK
 //SE FOREM NÚMEROS DUPLICADOS: Error\n
-//SE FOR SÓ ./push_swap: \n
+//SE FOR SÓ ./push_swap: \n ---------- CHECK
 //SE OS NÚMEROS JÁ ESTIVEREM ORDENADOS: \n
 
 //PARA 3 ELEMENTOS: MÁXIMO DE 3 MOVIMENTOS -> 6 WAYS (UM BANDO DE IF)

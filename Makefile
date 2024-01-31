@@ -4,8 +4,6 @@ SRCS	=	main.c             \
 		operations.c       \
 		operations_utils.c \
 		print_stacks.c     \
-		init_data.c        \
-		is_sorted.c
 
 OBJS	=	$(SRCS:.c=.o)
 

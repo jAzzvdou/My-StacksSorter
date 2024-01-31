@@ -6,11 +6,67 @@
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 15:09:31 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/01/31 14:58:19 by jazevedo         ###   ########.fr       */
+/*   Updated: 2024/01/31 20:32:57 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <stdlib.h>
+#include <unistd.h>
+
+int	ft_strlen(char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
+}
+
+long	ft_atol(char *s)
+{
+	long	nb;
+	int		i;
+	int		sign;
+
+	nb = 0;
+	i = 0;
+	sign = 1;
+	if (s[i] == '-')
+	{
+		sign = -1;
+		i++;
+	}
+	while (s[i])
+	{
+		nb = nb * 10 + s[i] - '0';
+		i++;
+	}
+	return (nb * sign);
+}
+
+int	ft_atoi(char *s)
+{
+	int	nb;
+	int	i;
+	int	sign;
+
+	nb = 0;
+	i = 0;
+	sign = 1;
+	if (s[i] == '-')
+	{
+		sign = -1;
+		i++;
+	}
+	while (s[i])
+	{
+		nb = nb * 10 + s[i] - '0';
+		i++;
+	}
+	return (nb * sign);
+}
 
 int	is_number(int nb)
 {
@@ -26,8 +82,8 @@ int	only_number(char *s)
 	i = 0;
 	if (s[i] == '-' || s[i] == '+')
 		i++;
-	while (s[i++])
-		if (!is_number(s[i]))
+	while (s[i])
+		if (!is_number(s[i++]))
 			return (0);
 	return (1);
 }
@@ -87,9 +143,13 @@ int	in_stack(t_pushswap *pushswap, int argc, char **argv)
 {
 	long	value;
 
+	while (--argc > 0)
+	{
+		value = ft_atoi(argv[argc]);
+		if (!push_new(&pushswap->a, value))
+			return (0);
+	}
 	value = ft_atoi(argv[--argc]);
-	if (!push_new(&pushswap->a, value))
-		return (0);
 	return (1);
 }
 
@@ -119,6 +179,34 @@ int	stack_size(t_stack *stack)
 	return (i);
 }
 
+void	first_algorithm(t_pushswap *pushswap)
+{
+	if (pushswap->a->value > pushswap->a->next->value
+		&& pushswap->a->value < pushswap->a->next->next->value)
+		sa(pushswap);
+	else if (pushswap->a->value > pushswap->a->next->value
+		&& pushswap->a->value > pushswap->a->next->next->value)
+	{
+		sa(pushswap);
+		rra(pushswap);
+	}
+	else if (pushswap->a->value < pushswap->a->next->value
+		&& pushswap->a->value > pushswap->a->next->next->value)
+		ra(pushswap);
+	else if (pushswap->a->value < pushswap->a->next->value
+		&& pushswap->a->value < pushswap->a->next->next->value)
+	{
+		sa(pushswap);
+		ra(pushswap);
+	}
+	else if (pushswap->a->value > pushswap->a->next->value
+		&& pushswap->a->value < pushswap->a->next->next->value)
+	{
+		sa(pushswap);
+		rra(pushswap);
+	}
+}
+
 int	main(int argc, char **argv)
 {
 	t_pushswap	pushswap;
@@ -128,7 +216,7 @@ int	main(int argc, char **argv)
 		return (write(2, "\n", 1));
 	if (argc == 2)
 		argv = ft_split(argv[1], ' ');
-	if (!verify_argv(argc, argv));
+	if (!verify_argv(argc, argv))
 		return (write(2, "Error\n", 6));
 	if (!is_int(argv))
 		return (write(2, "Error\n", 6));
@@ -146,20 +234,23 @@ int	main(int argc, char **argv)
 		}
 		// if stack have only 3 elements = first algorithm
 		// the first algotithm max moves is 3
-		if (stack_size(pushswap.a) == 3)
+		else if (stack_size(pushswap.a) == 3)
 			first_algorithm(&pushswap);
 		// if stack have 5 elements = second algorithm
 		// the second algorithm max moves is 12
-		if (stack_size(pushswap.a) == 5)
+		/*
+		else if (stack_size(pushswap.a) == 4
+			|| stack_size(pushswap.a) == 5)
 			second_algorithm(&pushswap);
 		// if stack have more than 5 elements = third algorithm
 		// the third algorithm max moves is 700
-		if (stack_size(pushswap.a) > 5)
+		else if (stack_size(pushswap.a) > 5)
 			third_algorithm(&pushswap);
+		*/
 	}	
 	return (0);
 }
-
+/*
 ////////////////////////////////////////////////////////////////////////////////
 
 int	main(int argc, char **argv)
@@ -188,3 +279,4 @@ int	main(int argc, char **argv)
 //PARA 5 ELEMENTOS: MÁXIMO DE 12 MOVIMENTOS -> 120 WAYS (ALGORITMO BÁSICO)
 //PARA 100 ELEMENTOS: MÁXIMO DE 700 MOVIMENTOS -> 100! WAYS (ALGORITMO AVANÇADO)
 //PARA 500 ELEMENTOS: MÁXIMO DE 5500 MOVIMENTOS -> 500! WAYS (ALGORITMO AVANÇADO)
+*/

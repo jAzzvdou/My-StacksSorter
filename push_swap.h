@@ -6,7 +6,7 @@
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 15:11:33 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/01/16 17:04:02 by jazevedo         ###   ########.fr       */
+/*   Updated: 2024/01/31 15:01:17 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ typedef struct s_pushswap;
 }	t_pushswap;
 
 // operations utils
-
 int	swap(t_stack **stack);
 int	push(t_stack **stack_from, t_stack **stack_to);
 int	rotate(t_stack **stack);
@@ -48,14 +47,7 @@ int	rra(t_pushswap *pushswap);
 int	rrb(t_pushswap *pushswap);
 int	rrr(t_pushswap *pushswap);
 
-int	start_pushswap(t_pushswap *pushswap, int argc, char **argv);
-
-// utils
-
-int	is_sorted(t_stack *stack);
-
 // debug
-
 int	debugger(t_pushswap *pushswap);
 
 #endif //PUSH_SWAP

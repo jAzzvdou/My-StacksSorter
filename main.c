@@ -6,7 +6,7 @@
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 15:09:31 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/02/01 18:09:23 by jazevedo         ###   ########.fr       */
+/*   Updated: 2024/02/01 18:14:54 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@ int	invalid_arguments(int argc, char **argv)
                 argv = ft_split(argv[1], ' ');
         if (!verify_argv(argc, argv))
                 return (write(2, "Error\n", 6));
-        if (!is_int(argv))
+        if (!is_int(argc, argv))
                 return (write(2, "Error\n", 6));
-        if (is_duplicated(argv))
+        if (is_duplicated(argc, argv))
                 return (write(2, "Error\n", 6));
         if (!in_stack(&pushswap, argc, argv))
                 return (1);

@@ -6,7 +6,7 @@
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 15:09:31 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/02/01 09:51:15 by jazevedo         ###   ########.fr       */
+/*   Updated: 2024/02/01 11:23:59 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,21 @@
 
 void	first_algorithm(t_pushswap *pushswap)
 {
-	if (pushswap->a->value > pushswap->a->next->value
-		&& pushswap->a->value < pushswap->a->next->next->value)
-		sa(pushswap);
-	else if (pushswap->a->value > pushswap->a->next->value
-		&& pushswap->a->value > pushswap->a->next->next->value)
+	if (pushswap->a->value == 1 && pushswap->a->next->value == 3)
 	{
-		sa(pushswap);
-		rra(pushswap);
-	}
-	else if (pushswap->a->value < pushswap->a->next->value
-		&& pushswap->a->value > pushswap->a->next->next->value)
-		ra(pushswap);
-	else if (pushswap->a->value < pushswap->a->next->value
-		&& pushswap->a->value < pushswap->a->next->next->value)
+		sa(pushswap);  // 1 3 2 -> 3 1 2
+		ra(pushswap);  // 3 1 2 -> 1 2 3
+	}	
+	else if (pushswap->a->value == 2 && pushswap->a->next->value == 1)
+		sa(pushswap);  // 2 1 3 -> 1 2 3
+	else if (pushswap->a->value == 2 && pushswap->a->next->value == 3)
+		rra(pushswap); // 2 3 1 -> 1 2 3
+	else if (pushswap->a->value == 3 && pushswap->a->next->value == 1)
+		ra(pushswap);  // 3 1 2 -> 1 2 3
+	else if (pushswap->a->value == 3 && pushswap->a->next->value == 2)
 	{
-		sa(pushswap);
-		ra(pushswap);
-	}
-	else if (pushswap->a->value > pushswap->a->next->value
-		&& pushswap->a->value < pushswap->a->next->next->value)
-	{
-		sa(pushswap);
-		rra(pushswap);
+		sa(pushswap);  // 3 2 1 -> 2 3 1
+		rra(pushswap); // 2 3 1 -> 1 2 3
 	}
 }
 
@@ -65,8 +57,6 @@ int	main(int argc, char **argv)
 				sa(&pushswap);
 			break ;
 		}
-		// if stack have only 3 elements = first algorithm
-		// the first algotithm max moves is 3
 		else if (stack_size(pushswap.a) == 3)
 			first_algorithm(&pushswap);
 		// if stack have 5 elements = second algorithm

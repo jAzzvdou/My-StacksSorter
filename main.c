@@ -6,7 +6,7 @@
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 15:09:31 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/02/01 12:04:05 by jazevedo         ###   ########.fr       */
+/*   Updated: 2024/02/01 18:09:23 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ void	first_algorithm(t_pushswap *pushswap)
 
 int	invalid_arguments(int argc, char **argv)
 {
+	t_pushswap	pushswap = {0};
+
         if (argc == 1 || (argc == 2 && !argv[1][0]))
                 return (write(2, "\n", 1));
         if (argc == 2)
@@ -47,7 +49,7 @@ int	invalid_arguments(int argc, char **argv)
         if (!in_stack(&pushswap, argc, argv))
                 return (1);
 	return (0);
-{
+}
 	
 
 int	main(int argc, char **argv)

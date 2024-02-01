@@ -1,29 +1,47 @@
 NAME	=	push_swap
 
 SRCS	=	main.c             \
-		operations.c       \
+		verify_argvs.c     \
+		stack_utils.c      \
+		s_operations.c     \
+		p_operations.c     \
+		r_operations.c     \
+		rr_operations.c    \
 		operations_utils.c \
-		print_stacks.c     \
+		utils.c            \
+		utils2.c	   \
+		print_stacks.c
+
+
+SRCS_BONUS	=
 
 OBJS	=	$(SRCS:.c=.o)
 
+OBJS_BONUS	=	$(SRCS_BONUS:.c=.o)
+
 CC	=	cc
 
-CFLAGS	=	-Wall -Wextra -Werror
+CFLAGS	=	-Wall -Werror -Wextra
 
-RM	=	rm -f
+RM	=	rm -rf 
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+		$(CC) -o $(NAME) $(OBJS)
+
+.c.o:
+		$(CC) $(CFLAGS) -c $<
 
 clean:
-	$(RM) $(OBJS)
+		$(RM) $(OBJS) $(OBJS_BONUS)
 
-fclean:
-	$(RM) $(OBJS) $(NAME)
+fclean: clean
+	$(RM) $(NAME)
 
 re: fclean all
 
-.PHONY: all clean fclean re
+bonus: $(OBJS_BONUS)
+		$(CC) -o $(NAME) $(OBJS_BONUS)
+
+.PHONY: all clean fclean re bonus

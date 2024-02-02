@@ -6,7 +6,7 @@
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 15:11:33 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/02/01 18:10:54 by jazevedo         ###   ########.fr       */
+/*   Updated: 2024/02/02 13:42:51 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,12 @@ typedef struct s_pushswap
 //----------ARGUMENTS----------//
 int     is_number(int nb);
 int     only_number(char *s);
-int     verify_argv(int argc, char **argv);
-int     is_int(int argc, char **argv);
-int     is_duplicated(int argc, char **argv);
+int     verify_argv(char **argv);
+int     is_int(char **argv);
+int     is_duplicated(char **argv);
 
 //----------STACK----------//
-int     push_new(t_stack **stack, long value);
+int     push_new(t_stack **stack, int value);
 int     in_stack(t_pushswap *pushswap, int argc, char **argv);
 int     is_sorted(t_stack *stack);
 int     stack_size(t_stack *stack);

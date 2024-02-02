@@ -6,13 +6,13 @@
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 09:49:11 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/02/01 09:50:45 by jazevedo         ###   ########.fr       */
+/*   Updated: 2024/02/02 13:39:39 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int     push_new(t_stack **stack, long value)
+int     push_new(t_stack **stack, int value)
 {
         t_stack *new;
 
@@ -27,15 +27,14 @@ int     push_new(t_stack **stack, long value)
 
 int     in_stack(t_pushswap *pushswap, int argc, char **argv)
 {
-        long    value;
+        int	value;
 
-        while (--argc > 0)
+        while (--argc >= 0)
         {
                 value = ft_atoi(argv[argc]);
                 if (!push_new(&pushswap->a, value))
                         return (0);
         }
-        value = ft_atoi(argv[--argc]);
         return (1);
 }
 

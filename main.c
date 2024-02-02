@@ -6,47 +6,73 @@
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 15:09:31 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/02/01 18:14:54 by jazevedo         ###   ########.fr       */
+/*   Updated: 2024/02/02 16:17:45 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	first_algorithm(t_pushswap *pushswap)
+void	first_algorithm(t_pushswap *ps)
 {
-	if (pushswap->a->value == 1 && pushswap->a->next->value == 3)
+	//1 3 2
+	if (ps->a->value < ps->a->next->value
+		&& ps->a->value < ps->a->next->next->value
+		&& ps->a->next->value > ps->a->next->next->value)
 	{
-		sa(pushswap);  // 1 3 2 -> 3 1 2
-		ra(pushswap);  // 3 1 2 -> 1 2 3
-	}	
-	else if (pushswap->a->value == 2 && pushswap->a->next->value == 1)
-		sa(pushswap);  // 2 1 3 -> 1 2 3
-	else if (pushswap->a->value == 2 && pushswap->a->next->value == 3)
-		rra(pushswap); // 2 3 1 -> 1 2 3
-	else if (pushswap->a->value == 3 && pushswap->a->next->value == 1)
-		ra(pushswap);  // 3 1 2 -> 1 2 3
-	else if (pushswap->a->value == 3 && pushswap->a->next->value == 2)
+		sa(ps);
+		ra(ps);
+	}
+	//2 1 3
+	else if (ps->a->value > ps->a->next->value
+		&& ps->a->value < ps->a->next->next->value
+		&& ps->a->next->value < ps->a->next->next->value)
+		sa(ps);
+	//2 3 1
+	else if (ps->a->value < ps->a->next->value
+		&& ps->a->value > ps->a->next->next->value
+		&& ps->a->next->value > ps->a->next->next->value)
+		rra(ps);
+	//3 1 2
+	else if (ps->a->value > ps->a->next->value
+		&& ps->a->value > ps->a->next->next->value
+		&& ps->a->next->value < ps->a->next->next->value)
+		ra(ps);
+	//3 2 1
+	else if (ps->a->value > ps->a->next->value
+		&& ps->a->value > ps->a->next->next->value
+		&& ps->a->next->value > ps->a->next->next->value)
 	{
-		sa(pushswap);  // 3 2 1 -> 2 3 1
-		rra(pushswap); // 2 3 1 -> 1 2 3
+		sa(ps);
+		rra(ps);
 	}
 }
 
-int	invalid_arguments(int argc, char **argv)
+int	invalid_arguments(t_pushswap *ps, int argc, char **argv)
 {
-	t_pushswap	pushswap = {0};
+	int	i;
 
         if (argc == 1 || (argc == 2 && !argv[1][0]))
                 return (write(2, "\n", 1));
         if (argc == 2)
+	{
                 argv = ft_split(argv[1], ' ');
-        if (!verify_argv(argc, argv))
+		i = 0;
+		while (argv[i])
+			i++;
+		argc = i;
+	}
+	else
+	{
+		argc--;
+		argv++;
+	}
+        if (!verify_argv(argv))
                 return (write(2, "Error\n", 6));
-        if (!is_int(argc, argv))
+        if (!is_int(argv))
                 return (write(2, "Error\n", 6));
-        if (is_duplicated(argc, argv))
+        if (is_duplicated(argv))
                 return (write(2, "Error\n", 6));
-        if (!in_stack(&pushswap, argc, argv))
+        if (!in_stack(ps, argc, argv))
                 return (1);
 	return (0);
 }
@@ -54,20 +80,20 @@ int	invalid_arguments(int argc, char **argv)
 
 int	main(int argc, char **argv)
 {
-	t_pushswap	pushswap = {0};
+	t_pushswap	ps = {0};
 
-	if (invalid_arguments(argc, argv))
+	if (invalid_arguments(&ps, argc, argv))
 		return (1);
-	while (!is_sorted(pushswap.a) || pushswap.b)
+	while (!is_sorted(ps.a) || ps.b)
 	{
-		if (stack_size(pushswap.a) == 2)
+		if (stack_size(ps.a) == 2)
 		{
-			if (pushswap.a->value > pushswap.a->next->value)
-				sa(&pushswap);
+			if (ps.a->value > ps.a->next->value)
+				sa(&ps);
 			break ;
 		}
-		else if (stack_size(pushswap.a) == 3)
-			first_algorithm(&pushswap);	
+		else if (stack_size(ps.a) == 3)
+			first_algorithm(&ps);	
 	}
 	return (0);
 }

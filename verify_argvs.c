@@ -6,7 +6,7 @@
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 09:43:22 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/02/01 17:55:56 by jazevedo         ###   ########.fr       */
+/*   Updated: 2024/02/02 13:42:10 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,27 +32,23 @@ int     only_number(char *s)
         return (1);
 }
 
-int     verify_argv(int argc, char **argv)
+int     verify_argv(char **argv)
 {
         int     i;
 
-        i = 0;
-        if (argc == 2)
-                i = -1;
-        while (argv[++i] != NULL)
+        i = -1;
+        while (argv[++i])
                 if (!only_number(argv[i]))
                         return (0);
         return (1);
 }
 
-int     is_int(int argc, char **argv)
+int     is_int(char **argv)
 {
         int     i;
 
-        i = 0;
-        if (argc == 2)
-                i = -1;
-        while (argv[++i] != NULL)
+        i = -1;
+        while (argv[++i])
         {
                 if (ft_strlen(argv[i]) > 11 || ft_atol(argv[i]) > 2147483647
                         || ft_atol(argv[i]) < -2147483648)
@@ -61,18 +57,16 @@ int     is_int(int argc, char **argv)
         return (1);
 }
 
-int     is_duplicated(int argc, char **argv)
+int     is_duplicated(char **argv)
 {
         int     i;
         int     ii;
 
-        i = 0;
-        if (argc == 2)
-                i = -1;
-        while (argv[++i] != NULL)
+        i = -1;
+        while (argv[++i])
         {
                 ii = i;
-                while (argv[++ii] != NULL)
+                while (argv[++ii])
                         if (ft_atoi(argv[i]) == ft_atoi(argv[ii]))
                                 return (1);
         }

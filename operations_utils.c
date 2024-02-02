@@ -6,12 +6,11 @@
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 15:19:46 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/02/01 09:52:29 by jazevedo         ###   ########.fr       */
+/*   Updated: 2024/02/02 16:19:41 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stddef.h>
 
 int	swap(t_stack **stack)
 {

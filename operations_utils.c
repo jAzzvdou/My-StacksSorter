@@ -14,13 +14,11 @@
 
 int	swap(t_stack **stack)
 {
-	t_stack	*second;
-
 	if (!*stack || !(*stack)->next)
 		return (0);
-	second = (*stack)->next;
+	t_stack *second = (*stack)->next;
 	(*stack)->next = second->next;
-	second->next = (*stack)->next;
+	second->next = *stack;
 	*stack = second;
 	return (0);
 }
@@ -34,34 +32,28 @@ int	push(t_stack **stack_from, t_stack **stack_to)
 
 int	rotate(t_stack **stack)
 {
-	t_stack	*tmp;
-	t_stack	*last;
-
 	if (!*stack || !(*stack)->next)
 		return (0);
-	tmp = *stack;
-	while (tmp->next->next)
-		tmp = tmp->next;
-	last = tmp->next;
-	tmp->next = NULL;
-	last->next = *stack;
-	*stack = last;
-	return (0);
-}
-
-int	reverse_rotate(t_stack **stack)
-{
-	t_stack	*tmp;
-	t_stack	*second;
-
-	if (!*stack || !(*stack)->next)
-		return (0);
-	tmp = *stack;
+	t_stack *tmp = *stack;
 	while (tmp->next)
 		tmp = tmp->next;
 	tmp->next = *stack;
-	second = (*stack)->next;
+	t_stack *second = (*stack)->next;
 	(*stack)->next = NULL;
 	*stack = second;
 	return (0);
+}
+
+int     reverse_rotate(t_stack **stack)
+{
+        if (!*stack || !(*stack)->next)
+        	return (0);
+        t_stack *tmp = *stack;
+        while (tmp->next->next)
+                tmp = tmp->next;
+        t_stack *last = tmp->next;
+        tmp->next = NULL;
+        last->next = *stack;
+        *stack = last;
+        return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 15:09:31 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/02/02 16:17:45 by jazevedo         ###   ########.fr       */
+/*   Updated: 2024/02/05 11:40:34 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,92 @@ int	invalid_arguments(t_pushswap *ps, int argc, char **argv)
                 return (1);
 	return (0);
 }
-	
+
+//cost_of_way will calculate the cost of a way to sort the stack
+int	cost_of_way(t_pushswap *ps, char *way)
+{
+	t_pushswap	*ps_copy;
+	int		cost;
+
+	ps_copy = (t_pushswap *)malloc(sizeof(t_pushswap));
+	*ps_copy = *ps;
+	cost = 0;
+	while (way[cost])
+	{
+		if (way[cost] == 's')
+			sa(ps_copy);
+		else if (way[cost] == 'r')
+			ra(ps_copy);
+		else if (way[cost] == 'p')
+			pb(ps_copy);
+		else if (way[cost] == 'a')
+			rra(ps_copy);
+		cost++;
+	}
+	cost += stack_size(ps_copy->b);
+	free(ps_copy);
+	return (cost);
+}
+
+//min_cost will return the minimum cost of the costs array
+int	min_cost(int *costs)
+{
+	int	min;
+	int	i;
+
+	min = costs[0];
+	i = 1;
+	while (i < 6)
+	{
+		if (costs[i] < min)
+			min = costs[i];
+		i++;
+	}
+	return (min);
+}
+
+//the second algorithm will calculate the cheapest way to sort the stack with 4 or 5 elements and it will calculate the cost of each way and choose the cheapest one
+void	second_algorithm(t_pushswap *ps)
+{
+	int	*costs;
+	int	i;
+
+	costs = (int *)malloc(sizeof(int) * 6);
+	costs[0] = cost_of_way(ps, "sa");
+	costs[1] = cost_of_way(ps, "ra");
+	costs[2] = cost_of_way(ps, "rra");
+	costs[3] = cost_of_way(ps, "rra\nsa");
+	costs[4] = cost_of_way(ps, "ra\nsa");
+	costs[5] = cost_of_way(ps, "pb");
+	i = 0;
+	while (i < 6)
+	{
+		if (costs[i] == min_cost(costs))
+			break ;
+		i++;
+	}
+	if (i == 0)
+		sa(ps);
+	else if (i == 1)
+		ra(ps);
+	else if (i == 2)
+		rra(ps);
+	else if (i == 3)
+	{
+		rra(ps);
+		sa(ps);
+	}
+	else if (i == 4)
+	{
+		ra(ps);
+		sa(ps);
+	}
+	else if (i == 5)
+		pb(ps);
+	free(costs);
+}
+
+
 
 int	main(int argc, char **argv)
 {
@@ -93,7 +178,11 @@ int	main(int argc, char **argv)
 			break ;
 		}
 		else if (stack_size(ps.a) == 3)
-			first_algorithm(&ps);	
+			first_algorithm(&ps);
+		else if (stack_size(ps.a) == 4 || stack_size(ps.a) == 5)
+			second_algorithm(&ps);
+		else
+			third_algorithm(&ps);
 	}
 	return (0);
 }

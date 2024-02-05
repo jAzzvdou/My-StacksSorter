@@ -6,7 +6,7 @@
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 09:30:54 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/02/01 09:35:32 by jazevedo         ###   ########.fr       */
+/*   Updated: 2024/02/05 15:19:52 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	ft_atoi(const char *nptr)
 long	ft_atol(const char *nptr)
 {
 	long	nb;
-	int	mult;
+	int		mult;
 
 	nb = 0;
 	mult = 1;

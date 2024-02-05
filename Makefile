@@ -3,15 +3,14 @@ NAME	=	push_swap
 SRCS	=	main.c             \
 		verify_argvs.c     \
 		stack_utils.c      \
+		first_algorithm.c  \
 		s_operations.c     \
 		p_operations.c     \
 		r_operations.c     \
 		rr_operations.c    \
 		operations_utils.c \
 		utils.c            \
-		utils2.c	   \
-		print_stacks.c
-
+		utils2.c
 
 SRCS_BONUS	=
 

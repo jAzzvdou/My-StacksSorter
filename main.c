@@ -6,7 +6,7 @@
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 15:09:31 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/02/05 11:40:34 by jazevedo         ###   ########.fr       */
+/*   Updated: 2024/02/05 11:42:22 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,7 +161,24 @@ void	second_algorithm(t_pushswap *ps)
 	free(costs);
 }
 
+//free_everything will free the stack a and the stack b
+void	free_everything(t_pushswap *ps)
+{
+	t_stack	*temp;
 
+	while (ps->a)
+	{
+		temp = ps->a;
+		ps->a = ps->a->next;
+		free(temp);
+	}
+	while (ps->b)
+	{
+		temp = ps->b;
+		ps->b = ps->b->next;
+		free(temp);
+	}
+}
 
 int	main(int argc, char **argv)
 {
@@ -184,6 +201,8 @@ int	main(int argc, char **argv)
 		else
 			third_algorithm(&ps);
 	}
+	//function to free everything
+	free_everything(&ps);
 	return (0);
 }
 

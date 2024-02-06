@@ -6,7 +6,7 @@
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 14:38:50 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/02/06 14:40:10 by jazevedo         ###   ########.fr       */
+/*   Updated: 2024/02/06 15:52:33 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	print_stacks(t_pushswap *ps)
 	b = ps->b;
 	while (a || b)
 	{
-		if (a) 
+		if (a)
 		{
 			printf("%11d", a->value);
 			a = a->next;

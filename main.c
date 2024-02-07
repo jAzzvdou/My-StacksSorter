@@ -6,7 +6,7 @@
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 15:09:31 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/02/06 15:40:09 by jazevedo         ###   ########.fr       */
+/*   Updated: 2024/02/06 22:28:35 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,8 @@ int	main(int argc, char **argv)
 			first_algorithm(&ps);
 		else if (stack_size(ps.a) <= 5)
 			second_algorithm(&ps);
-		//else
-		//	third_algorithm(&ps);
+		else
+			third_algorithm(&ps);
 	}
 	print_stacks(&ps);
 	free_everything(&ps);

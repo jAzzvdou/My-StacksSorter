@@ -12,7 +12,6 @@ SRCS	=	main.c             \
 		rr_operations.c    \
 		operations_utils.c \
 		utils.c            \
-		utils2.c           \
 		print_stacks.c
 
 SRCS_BONUS	=

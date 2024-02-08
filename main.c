@@ -6,11 +6,21 @@
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 15:09:31 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/02/06 22:28:35 by jazevedo         ###   ########.fr       */
+/*   Updated: 2024/02/08 17:27:39 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	free_matrix(char **matrix)
+{
+	int	i;
+
+	i = -1;
+	while (matrix[++i])
+		free(matrix[i]);
+	free(matrix);
+}
 
 void	free_everything(t_pushswap *ps)
 {
@@ -89,6 +99,7 @@ int	main(int argc, char **argv)
 			third_algorithm(&ps);
 	}
 	print_stacks(&ps);
+	free_matrix(argv);
 	free_everything(&ps);
 	return (0);
 }

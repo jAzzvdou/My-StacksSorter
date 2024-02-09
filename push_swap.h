@@ -6,7 +6,7 @@
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 15:11:33 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/02/09 00:17:05 by jazevedo         ###   ########.fr       */
+/*   Updated: 2024/02/09 10:57:10 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int		stack_size(t_stack *stack);
 //----------ALGORITHMS----------//
 void	first_algorithm(t_pushswap *ps);
 void	second_algorithm(t_pushswap *ps);
-int	third_algorithm(t_pushswap *ps, int size, int flag);
+int	third_algorithm(t_pushswap *ps);
 
 //----------OPERATIONS----------//
 int		sa(t_pushswap *pushswap);

@@ -6,14 +6,13 @@
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 17:28:02 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/02/09 15:33:20 by jazevedo         ###   ########.fr       */
+/*   Updated: 2024/02/09 15:57:44 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
 
-int	*stack_copy(t_stack *stack)
+int	*stack_to_array(t_stack *stack)
 {
 	int	i;
 	int	*array;
@@ -53,7 +52,7 @@ int	*bubblesort(int *stack, int size)
 	return (stack);
 }
 
-int	cost_top(t_stack *stack, int index)
+int	cost_to_top(t_stack *stack, int index)
 {
 	int	i;
 	int	size;
@@ -91,22 +90,25 @@ void	set_index(t_stack *stack, int *array, int size)
 	}
 }
 
+/*int	cost_in_range(t_stack *stack, int start, int end)
+{
+	int	i;
+
+	i = 0;
+	while (stack)
+	{
+		while (stack->index)
+
+		stack = stack->next;
+	}
+
+#include <stdio.h>*/
 void	third_algorithm(t_pushswap *ps)
 {
 	int	size = stack_size(ps->a);
-	int	*array = bubblesort(stack_copy(ps->a), size);
-	//int i = -1;
+	int	*array = bubblesort(stack_to_array(ps->a), size);
 
 	set_index(ps->a, array, size);
-	/*while (++i < percent)
-	{
-		int cost = cost_top(ps->a, array[i]);
-		if (cost > 0)
-			while (cost-- > 0)
-				ra(ps);
-		else
-			while (cost++ < 0)
-				rra(ps);
-		pb(ps);
-	}*/
+	//int range = cost_in_range(ps->a, 0, 50);
+	int cost = cost_to_top(ps->a, 0);
 }

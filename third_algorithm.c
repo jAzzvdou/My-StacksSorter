@@ -6,7 +6,7 @@
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 17:28:02 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/02/09 10:56:55 by jazevedo         ###   ########.fr       */
+/*   Updated: 2024/02/09 11:00:08 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void    bubblesort(int *stack, int size)
         }
 }
 
-int	third_algorithm(t_pushswap *ps)
+void	third_algorithm(t_pushswap *ps)
 {
 	(void)ps;
 }

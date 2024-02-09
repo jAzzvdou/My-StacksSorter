@@ -6,7 +6,7 @@
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 17:28:02 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/02/09 16:23:11 by jazevedo         ###   ########.fr       */
+/*   Updated: 2024/02/09 16:31:15 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,5 +117,16 @@ void	third_algorithm(t_pushswap *ps)
 			cost = tmp;
 		}
 	}
+	if (cost < 0)
+	{
+		while (cost++)
+			rra(ps);
+	}
+	else
+	{
+		while (cost--)
+			ra(ps);
+	}
+	pb(ps);
 	printf("smallest: %d\n", cost);
 }

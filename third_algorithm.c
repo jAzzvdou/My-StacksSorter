@@ -6,7 +6,7 @@
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 17:28:02 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/02/09 16:34:54 by jazevedo         ###   ########.fr       */
+/*   Updated: 2024/02/09 17:27:43 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ void	set_index(t_stack *stack, int *array, int size)
 }
 
 #include <stdio.h>
-void	third_algorithm(t_pushswap *ps)
+void	third_algorithm(t_pushswap *ps, int range)
 {
 	int	size = stack_size(ps->a);
 	int	*array = bubblesort(stack_to_array(ps->a), size);
@@ -100,7 +100,6 @@ void	third_algorithm(t_pushswap *ps)
 	int i = -1;
 	int smallest = 2147483647;
 	int cost = 0;
-	int range = 10;
 	while (ps->a)
 	{
 		while (++i <= range && range < size)
@@ -131,7 +130,7 @@ void	third_algorithm(t_pushswap *ps)
 				ra(ps);
 		}
 		pb(ps);
-		range += 10;
+		range += range;
 	}
 	printf("smallest: %d\n", cost);
 }

@@ -6,7 +6,7 @@
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 15:09:31 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/02/09 16:11:19 by jazevedo         ###   ########.fr       */
+/*   Updated: 2024/02/09 17:26:58 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,24 +60,33 @@ int	invalid_arguments(t_pushswap *ps, int argc, char **argv)
 int	main(int argc, char **argv)
 {
 	t_pushswap	ps;
+	int		size;
+	int		range;
 
 	ps = (t_pushswap){0};
+	size = stack_size(ps.a);
+	if (size >= 500)
+		range = 50;
+	else if (size >= 100)
+		range = 10;
+	else
+		range = 2;
 	if (invalid_arguments(&ps, argc, argv))
 		return (1);
 	print_stacks(&ps);
 	if (!is_sorted(ps.a) || ps.b)
 	{
-		if (stack_size(ps.a) == 2)
+		if (size == 2)
 		{
 			if (ps.a->value > ps.a->next->value)
 				sa(&ps);
 		}
-		else if (stack_size(ps.a) == 3)
+		else if (size == 3)
 			first_algorithm(&ps);
-		else if (stack_size(ps.a) <= 5)
+		else if (size <= 5)
 			second_algorithm(&ps);
 		else
-			third_algorithm(&ps);
+			third_algorithm(&ps, range);
 	}
 	print_stacks(&ps);
 	free_everything(&ps);

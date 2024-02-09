@@ -6,7 +6,7 @@
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 17:28:02 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/02/09 15:57:44 by jazevedo         ###   ########.fr       */
+/*   Updated: 2024/02/09 16:23:11 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,25 +90,32 @@ void	set_index(t_stack *stack, int *array, int size)
 	}
 }
 
-/*int	cost_in_range(t_stack *stack, int start, int end)
-{
-	int	i;
-
-	i = 0;
-	while (stack)
-	{
-		while (stack->index)
-
-		stack = stack->next;
-	}
-
-#include <stdio.h>*/
+#include <stdio.h>
 void	third_algorithm(t_pushswap *ps)
 {
 	int	size = stack_size(ps->a);
 	int	*array = bubblesort(stack_to_array(ps->a), size);
 
 	set_index(ps->a, array, size);
-	//int range = cost_in_range(ps->a, 0, 50);
-	int cost = cost_to_top(ps->a, 0);
+	int i = -1;
+	int smallest = 2147483647;
+	int cost = 0;
+	while (++i <= 5)
+	{
+		int tmp = cost_to_top(ps->a, i);
+		if (tmp < 0)
+		{
+			if (-tmp < smallest)
+			{
+				smallest = -tmp;
+				cost = tmp;
+			}
+		}
+		else if (tmp < smallest)
+		{
+			smallest = tmp;
+			cost = tmp;
+		}
+	}
+	printf("smallest: %d\n", cost);
 }

@@ -6,7 +6,7 @@
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 17:28:02 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/02/09 16:31:15 by jazevedo         ###   ########.fr       */
+/*   Updated: 2024/02/09 16:34:54 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,33 +100,38 @@ void	third_algorithm(t_pushswap *ps)
 	int i = -1;
 	int smallest = 2147483647;
 	int cost = 0;
-	while (++i <= 5)
+	int range = 10;
+	while (ps->a)
 	{
-		int tmp = cost_to_top(ps->a, i);
-		if (tmp < 0)
+		while (++i <= range && range < size)
 		{
-			if (-tmp < smallest)
+			int tmp = cost_to_top(ps->a, i);
+			if (tmp < 0)
 			{
-				smallest = -tmp;
+				if (-tmp < smallest)
+				{
+					smallest = -tmp;
+					cost = tmp;
+				}
+			}
+			else if (tmp < smallest)
+			{
+				smallest = tmp;
 				cost = tmp;
 			}
 		}
-		else if (tmp < smallest)
+		if (cost < 0)
 		{
-			smallest = tmp;
-			cost = tmp;
+			while (cost++)
+				rra(ps);
 		}
+		else
+		{
+			while (cost--)
+				ra(ps);
+		}
+		pb(ps);
+		range += 10;
 	}
-	if (cost < 0)
-	{
-		while (cost++)
-			rra(ps);
-	}
-	else
-	{
-		while (cost--)
-			ra(ps);
-	}
-	pb(ps);
 	printf("smallest: %d\n", cost);
 }

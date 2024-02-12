@@ -100,37 +100,33 @@ void	third_algorithm(t_pushswap *ps, int range)
 	int i = -1;
 	int smallest = 2147483647;
 	int cost = 0;
-	while (ps->a)
+	while (++i <= range)
 	{
-		while (++i <= range && range < size)
+		int tmp = cost_to_top(ps->a, i);
+		if (tmp < 0)
 		{
-			int tmp = cost_to_top(ps->a, i);
-			if (tmp < 0)
+			if (-tmp < smallest)
 			{
-				if (-tmp < smallest)
-				{
-					smallest = -tmp;
-					cost = tmp;
-				}
-			}
-			else if (tmp < smallest)
-			{
-				smallest = tmp;
+				smallest = -tmp;
 				cost = tmp;
 			}
 		}
-		if (cost < 0)
+		else if (tmp < smallest)
 		{
-			while (cost++)
-				rra(ps);
+			smallest = tmp;
+			cost = tmp;
 		}
-		else
-		{
-			while (cost--)
-				ra(ps);
-		}
-		pb(ps);
-		range += range;
 	}
+	/*if (cost < 0)
+	{
+		while (cost++)
+			rra(ps);
+	}
+	else
+	{
+		while (cost--)
+			ra(ps);
+	}
+	pb(ps);*/
 	printf("smallest: %d\n", cost);
 }

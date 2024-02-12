@@ -64,15 +64,11 @@ int	main(int argc, char **argv)
 	int		range;
 
 	ps = (t_pushswap){0};
-	size = stack_size(ps.a);
-	if (size >= 500)
-		range = 50;
-	else if (size >= 100)
-		range = 10;
-	else
-		range = 2;
+	
 	if (invalid_arguments(&ps, argc, argv))
 		return (1);
+	size = stack_size(ps.a);
+	range = 2;
 	print_stacks(&ps);
 	if (!is_sorted(ps.a) || ps.b)
 	{

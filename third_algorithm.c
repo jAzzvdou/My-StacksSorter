@@ -12,6 +12,8 @@
 
 #include "push_swap.h"
 
+#include <stdio.h>
+
 int	*stack_to_array(t_stack *stack)
 {
 	int	i;
@@ -52,6 +54,22 @@ int	*bubblesort(int *stack, int size)
 	return (stack);
 }
 
+void    set_index(t_stack *stack, int *array, int size)
+{
+        int     i;
+
+        while (stack)
+        {
+                i = -1;
+                while (++i < size)
+                {
+                        if (stack->value == array[i])
+                                stack->index = i;
+                }
+                stack = stack->next;
+        }
+}
+
 int	cost_to_top(t_stack *stack, int index)
 {
 	int	i;
@@ -74,59 +92,63 @@ int	cost_to_top(t_stack *stack, int index)
 	return (0);
 }
 
-void	set_index(t_stack *stack, int *array, int size)
+int	cheapest_in_range(t_pushswap *ps, int range)
 {
 	int	i;
+	int	cost;
+	int	tmp;
+	int	smallest;
 
-	while (stack)
-	{
-		i = -1;
-		while (++i < size)
-		{
-			if (stack->value == array[i])
-				stack->index = i;
-		}
-		stack = stack->next;
-	}
+	smallest = 2147483647;
+	cost = 0;
+	i = -1;
+        while (++i < range)
+        {
+                tmp = cost_to_top(ps->a, i);
+                if (tmp < 0)
+                {
+                        if (-tmp < smallest)
+                        {
+                                smallest = -tmp;
+                                cost = tmp;
+                        }
+                }
+                else if (tmp < smallest)
+                {
+                        smallest = tmp;
+                        cost = tmp;
+                }
+        }
+	return (cost);
 }
 
-#include <stdio.h>
-void	third_algorithm(t_pushswap *ps, int range)
+void	make_moves(t_pushswap *ps, int cost)
 {
-	int	size = stack_size(ps->a);
-	int	*array = bubblesort(stack_to_array(ps->a), size);
-
-	set_index(ps->a, array, size);
-	int i = -1;
-	int smallest = 2147483647;
-	int cost = 0;
-	while (++i <= range)
+	if (cost < 0)
 	{
-		int tmp = cost_to_top(ps->a, i);
-		if (tmp < 0)
-		{
-			if (-tmp < smallest)
-			{
-				smallest = -tmp;
-				cost = tmp;
-			}
-		}
-		else if (tmp < smallest)
-		{
-			smallest = tmp;
-			cost = tmp;
-		}
-	}
-	/*if (cost < 0)
-	{
-		while (cost++)
+		while (cost++ < 0)
 			rra(ps);
 	}
-	else
+	else if (cost > 0)
 	{
-		while (cost--)
+		while (cost-- > 0)
 			ra(ps);
 	}
-	pb(ps);*/
-	printf("smallest: %d\n", cost);
+	pb(ps);
+}
+
+void	third_algorithm(t_pushswap *ps, int range)
+{
+	int	size;
+	int	*array;
+
+	size = stack_size(ps->a); //Passa todo o conteúdo da stack A para um array.
+	array = bubblesort(stack_to_array(ps->a), size); //Organiza esse array em ordem crescente.
+	set_index(ps->a, array, size); //Seta os valores da stack A por index. O menor número é index zero e o maior é index N.
+	int cost = cheapest_in_range(ps, range); //Mostra o custo para mandar um número do RANGE para a stack B com menos movimentos.
+						//RANGE são os X´s menores números da Stack A.
+	make_moves(ps, cost); //Manda o número com o menor custo que está dentro do RANGE para a Stack B.
+	//Aqui deverá ser recalculado o custo para mandar o próximo número do RANGE.
+
+	//Esse processo deve ser feito até que a Stack A esteja vazia.
 }

@@ -40,6 +40,18 @@ int	argvs_size(char **argv)
 	return (i);
 }
 
+int	set_range(int size)
+{
+	int	range;
+
+	range = 2;
+	if (size >= 500)
+		range = 25;
+	else if (size >= 100)
+		range = 5;
+	return (range);
+}
+
 int	invalid_arguments(t_pushswap *ps, int argc, char **argv)
 {
 	if (argc <= 2)
@@ -63,12 +75,11 @@ int	main(int argc, char **argv)
 	int		size;
 	int		range;
 
-	ps = (t_pushswap){0};
-	
+	ps = (t_pushswap){0};	
 	if (invalid_arguments(&ps, argc, argv))
 		return (1);
 	size = stack_size(ps.a);
-	range = 2;
+	range = set_range(size);
 	print_stacks(&ps);
 	if (!is_sorted(ps.a) || ps.b)
 	{

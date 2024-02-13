@@ -12,8 +12,6 @@
 
 #include "push_swap.h"
 
-#include <stdio.h>
-
 int	*stack_to_array(t_stack *stack)
 {
 	int	i;
@@ -140,15 +138,28 @@ void	make_moves(t_pushswap *ps, int cost)
 void	third_algorithm(t_pushswap *ps, int range)
 {
 	int	size;
+	int	cost;
+	int	backup;
 	int	*array;
 
-	size = stack_size(ps->a); //Passa todo o conteúdo da stack A para um array.
-	array = bubblesort(stack_to_array(ps->a), size); //Organiza esse array em ordem crescente.
-	set_index(ps->a, array, size); //Seta os valores da stack A por index. O menor número é index zero e o maior é index N.
-	int cost = cheapest_in_range(ps, range); //Mostra o custo para mandar um número do RANGE para a stack B com menos movimentos.
+	backup = range;
+	while (ps->a)
+	{
+		size = stack_size(ps->a); //Passa todo o conteúdo da stack A para um array.
+		array = bubblesort(stack_to_array(ps->a), size); //Organiza esse array em ordem crescente.
+		set_index(ps->a, array, size); //Seta os valores da stack A por index. O menor número é index zero e o maior é index N.
+		cost = cheapest_in_range(ps, range); //Mostra o custo para mandar um número do RANGE para a stack B com menos movimentos.
 						//RANGE são os X´s menores números da Stack A.
-	make_moves(ps, cost); //Manda o número com o menor custo que está dentro do RANGE para a Stack B.
-	//Aqui deverá ser recalculado o custo para mandar o próximo número do RANGE.
-
-	//Esse processo deve ser feito até que a Stack A esteja vazia.
+		make_moves(ps, cost); //Manda o número com o menor custo que está dentro do RANGE para a Stack B.
+		range--;
+		if (!range)
+			range = backup;
+	}
+	while (ps->b)
+	{
+		pa(ps);
+		pa(ps);
+		if (ps->a->value > ps->a->next->value)
+			sa(ps);
+	}
 }

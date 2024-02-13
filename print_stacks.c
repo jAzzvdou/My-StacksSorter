@@ -24,12 +24,12 @@ int	print_stacks(t_pushswap *ps)
 	{
 		if (a)
 		{
-			printf("%11d", a->value);
+			printf("A: %1d", a->value);
 			a = a->next;
 		}
 		if (b)
 		{
-			printf("%11d", b->value);
+			printf("B: %1d", b->value);
 			b = b->next;
 		}
 		printf("\n");

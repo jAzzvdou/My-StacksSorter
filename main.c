@@ -81,6 +81,7 @@ int	main(int argc, char **argv)
 	size = stack_size(ps.a);
 	range = set_range(size);
 	print_stacks(&ps);
+	write(1, "\n", 1);
 	if (!is_sorted(ps.a) || ps.b)
 	{
 		if (size == 2)
@@ -95,6 +96,7 @@ int	main(int argc, char **argv)
 		else
 			third_algorithm(&ps, range);
 	}
+	write(1, "\n", 1);
 	print_stacks(&ps);
 	free_everything(&ps);
 	return (0);

@@ -155,12 +155,4 @@ void	third_algorithm(t_pushswap *ps, int range)
 		if (!range)
 			range = backup;
 	}
-	while (ps->b)
-	{
-		pa(ps);
-		pa(ps);
-		if (ps->a->value > ps->a->next->value)
-			sa(ps);
-		//IMPLEMENTAR ORGANIZAÇÃO PARA RANGE != 2.
-	} //SÓ ESTÁ FUNCIONANDO COM RANGE = 2 POR ENQUANTO.
 }

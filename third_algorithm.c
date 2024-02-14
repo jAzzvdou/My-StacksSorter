@@ -125,12 +125,12 @@ void	make_moves(t_pushswap *ps, int cost)
 	if (cost < 0)
 	{
 		while (cost++ < 0)
-			rra(ps);
+			rra(ps); // Falta implementar 'rrb' e 'rrr'.
 	}
 	else if (cost > 0)
 	{
 		while (cost-- > 0)
-			ra(ps);
+			ra(ps); // Falta implementar 'rb' e 'rr'.
 	}
 	pb(ps);
 }
@@ -139,10 +139,8 @@ void	third_algorithm(t_pushswap *ps, int range)
 {
 	int	size;
 	int	cost;
-	int	backup;
 	int	*array;
 
-	backup = range;
 	while (ps->a)
 	{
 		size = stack_size(ps->a); //Passa todo o conteúdo da stack A para um array.
@@ -151,8 +149,7 @@ void	third_algorithm(t_pushswap *ps, int range)
 		cost = cheapest_in_range(ps, range); //Mostra o custo para mandar um número do RANGE para a stack B com menos movimentos.
 						//RANGE são os X´s menores números da Stack A.
 		make_moves(ps, cost); //Manda o número com o menor custo que está dentro do RANGE para a Stack B.
-		range--;
-		if (!range)
-			range = backup;
 	}
-}
+	while (ps->b)
+		pa(ps); // Falta organizar aqui!
+} //Ainda não estou usando s_operation. Começar a usar pode melhorar a eficiência do algoritmo e economizar movimentos.

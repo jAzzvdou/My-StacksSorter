@@ -141,19 +141,23 @@ void	third_algorithm(t_pushswap *ps, int range)
 	int	cost;
 	int	*array;
 
-	size = stack_size(ps->a);
+	while (ps->a)
+	{
+		size = stack_size(ps->a);
 //Passa todo o conteúdo da stack A para um array.
 
-	array = bubblesort(stack_to_array(ps->a), size);
+		array = bubblesort(stack_to_array(ps->a), size);
 //Organiza esse array em ordem crescente.
 	
-	set_index(ps->a, array, size);
+		set_index(ps->a, array, size);
 //Seta os valores da stack A por index. O menor número é index zero e o maior é index N.
 
-	cost = cheapest_in_range(ps, range);
+		cost = cheapest_in_range(ps, range);
 //Mostra o custo para mandar um número do RANGE para a stack B com menos movimentos. RANGE são os X´s menores números da Stack A.
 
-	make_moves(ps, cost);
+		make_moves(ps, cost);
 //Manda o número com o menor custo que está dentro do RANGE para a Stack B.
-
+	}
+	while (ps->b)
+		pa(ps);
 } //Ainda não estou usando 'sa', 'sb', 'ss', 'rb', 'rr', 'rrb' e 'rrr'.

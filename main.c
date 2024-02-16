@@ -6,7 +6,7 @@
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 15:09:31 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/02/09 17:26:58 by jazevedo         ###   ########.fr       */
+/*   Updated: 2024/02/16 16:22:19 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,18 +40,6 @@ int	argvs_size(char **argv)
 	return (i);
 }
 
-int	set_range(int size)
-{
-	int	range;
-
-	range = 2;
-	if (size >= 500)
-		range = 25;
-	else if (size >= 100)
-		range = 5;
-	return (range);
-}
-
 int	invalid_arguments(t_pushswap *ps, int argc, char **argv)
 {
 	if (argc <= 2)
@@ -73,16 +61,16 @@ int	main(int argc, char **argv)
 {
 	t_pushswap	ps;
 	int		size;
-	int		range;
 
 	ps = (t_pushswap){0};	
 	if (invalid_arguments(&ps, argc, argv))
 		return (1);
 	size = stack_size(ps.a);
-	range = set_range(size);
-//	print_stacks(&ps);
-//	write(1, "\n", 1);
-	while (!is_sorted(ps.a) || ps.b)
+	ps.size_a = size;
+	ps.size_b = 0;
+	print_stacks(&ps);
+	write(1, "\n", 1);
+	if (!is_sorted(ps.a) || ps.b)
 	{
 		if (size == 2)
 		{
@@ -94,10 +82,10 @@ int	main(int argc, char **argv)
 		else if (size <= 5)
 			second_algorithm(&ps);
 		else
-			third_algorithm(&ps, range);
+			quick_a(&ps, size, 0);
 	}
-//	write(1, "\n", 1);
-//	print_stacks(&ps);
+	write(1, "\n", 1);
+	print_stacks(&ps);
 	free_everything(&ps);
 	return (0);
 }

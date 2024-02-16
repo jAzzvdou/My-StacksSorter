@@ -5,7 +5,7 @@ SRCS	=	main.c             \
 		stack_utils.c      \
 		first_algorithm.c  \
 		second_algorithm.c \
-		third_algorithm.c  \
+		quick.c            \
 		s_operations.c     \
 		p_operations.c     \
 		r_operations.c     \

@@ -14,7 +14,10 @@ SRCS	=	main.c             \
 		utils.c            \
 		print_stacks.c
 
-SRCS_BONUS	=
+SRCS_BONUS	=	checker.c             \
+			checker_utils.c       \
+			get_next_line.c       \
+			get_next_line_utils.c
 
 OBJS	=	$(SRCS:.c=.o)
 

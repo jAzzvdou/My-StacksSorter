@@ -1,5 +1,7 @@
 #include "push_swap.h"
 
+#include <stdio.h>
+
 int     *stack_to_array(t_stack *stack)
 {
         int     i;
@@ -58,7 +60,7 @@ void	sort_b(t_pushswap *ps, int size)
 		pa(ps);
 	else if (size == 2)
 	{
-		if (ps->b->value < ps->b->next->value)
+		if (ps->b && ps->b->value < ps->b->next->value)
 			sb(ps);
 		while (ps->b)
 			pa(ps);
@@ -70,8 +72,8 @@ void	sort_b(t_pushswap *ps, int size)
 		{
 			if (size == 1 && ps->a->value > ps->a->next->value)
 				sb(ps);
-			else if (size == 1 || (size >= 2 && ps->b->value > ps->b->next->value)
-				|| (size == 3 && ps->b->value > ps->b->next->next->value))
+			else if (size == 1 || (ps->b->next && (size >= 2 && ps->b->value > ps->b->next->value))
+				|| (ps->b->next->next && (size == 3 && ps->b->value > ps->b->next->next->value)))
 			{
 				pa(ps);
 				size--;
@@ -84,17 +86,17 @@ void	sort_b(t_pushswap *ps, int size)
 
 void	sort_a(t_pushswap *ps, int size)
 {
-	if (size == 2)
+	if (size == 3 && ps->size_a == 3)
+		first_algorithm(ps);
+	else if (size == 2)
 	{
 		if (ps->a->value > ps->a->next->value)
 			sa(ps);
 	}
-	else if (size == 3 && ps->size_a == 3)
-		first_algorithm(ps);
 	else if (size == 3)
 	{
-		while (size != 3 || !(ps->a->value < ps->a->next->value
-				&& ps->a->next->value < ps->a->next->next->value))
+		while (size != 3 || (ps->a->next->next && !(ps->a->value < ps->a->next->value
+				&& ps->a->next->value < ps->a->next->next->value)))
 		{
 			if (size == 3 && ps->a->value > ps->a->next->value)
 				sa(ps);

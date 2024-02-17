@@ -6,7 +6,7 @@
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 14:38:50 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/02/06 15:52:33 by jazevedo         ###   ########.fr       */
+/*   Updated: 2024/02/17 11:06:22 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@ int	print_stacks(t_pushswap *ps)
 	{
 		if (a)
 		{
-			printf("A: %1d", a->value);
+			printf("A: %d", a->value);
 			a = a->next;
 		}
 		if (b)
 		{
-			printf("B: %1d", b->value);
+			printf("%12d", b->value);
 			b = b->next;
 		}
 		printf("\n");

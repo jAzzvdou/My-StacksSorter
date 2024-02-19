@@ -6,7 +6,7 @@
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 15:11:33 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/02/16 16:23:41 by jazevedo         ###   ########.fr       */
+/*   Updated: 2024/02/19 14:52:28 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,7 @@ typedef struct s_stack
 typedef struct s_pushswap
 {
 	t_stack	*a;
-	int	size_a;
 	t_stack	*b;
-	int	size_b;
 }	t_pushswap;
 
 //----------ARGUMENTS----------//
@@ -47,7 +45,7 @@ int		stack_size(t_stack *stack);
 //----------ALGORITHMS----------//
 void	first_algorithm(t_pushswap *ps);
 void	second_algorithm(t_pushswap *ps);
-void	quick_a(t_pushswap *ps, int size, int flag);
+void	third_algorithm(t_pushswap *ps);
 
 //----------OPERATIONS----------//
 int		sa(t_pushswap *pushswap);

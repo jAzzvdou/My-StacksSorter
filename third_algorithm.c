@@ -1,28 +1,28 @@
 #include "push_swap.h"
 
-int     *stack_to_array(t_stack *stack)
-{
-        int     i;
-        int     *array;
-        int     size;
+#include <stdio.h>
 
-        size = stack_size(stack);
-        array = malloc(sizeof(int) * size);
-        i = -1;
-        while (++i < size)
-        {
-                array[i] = stack->value;
-                stack = stack->next;
-        }
-        return (array);
+int	*stack_to_array(t_stack *stack)
+{
+	int	i;
+	int	*array;
+	int	size;
+	size = stack_size(stack);
+	array = malloc(sizeof(int) * size);
+	i = -1;
+	while (++i < size)
+	{
+		array[i] = stack->value;
+		stack = stack->next;
+	}
+	return (array);
 }
 
-int     *bubblesort(int *stack, int size)
+int	*bubblesort(int *stack, int size)
 {
         int     i;
         int     ii;
         int     tmp;
-
         i = -1;
         while (++i < size)
         {
@@ -37,136 +37,162 @@ int     *bubblesort(int *stack, int size)
                         }
                 }
         }
-        return (stack);
+	return (stack);
 }
 
-int     find_pivot(t_stack *stack, int size)
+void    set_index(t_stack *stack, int *array, int size)
 {
-	int     *array;
-	int     pivot;
-
-	array = stack_to_array(stack);
-	array = bubblesort(array, size);
-	pivot = array[size / 2];
-	free(array);
-	return (pivot);
+        int     i;
+        while (stack)
+        {
+                i = -1;
+                while (++i < size)
+                {
+                        if (stack->value == array[i])
+                                stack->index = i;
+                }
+                stack = stack->next;
+        }
 }
 
-void	sort_b(t_pushswap *ps, int size)
+int	cost_to_top(t_stack *stack, int index)
 {
-	if (size == 1)
-		pa(ps);
-	else if (size == 2)
+	int	i;
+	int	size;
+	
+	size = stack_size(stack);
+	i = 0;
+	while (stack)
 	{
-		if (ps->b->value < ps->b->next->value)
-			sb(ps);
-		while (ps->b)
-			pa(ps);
-	}
-	else if (size == 3)
-	{
-		while (size || !(ps->a->value < ps->a->next->value
-			&& ps->a->next->value < ps->a->next->next->value))
+		if (stack->index == index)
 		{
-			if (size == 1 && ps->a->value > ps->a->next->value)
-				sb(ps);
-			else if (size == 1 || (size >= 2 && ps->b->value > ps->b->next->value)
-				|| (size == 3 && ps->b->value > ps->b->next->next->value))
-			{
-				pa(ps);
-				size--;
-			}
+			if (i < size / 2)
+				return (i);
 			else
-				sb(ps);
+				return (-(size - i));
 		}
+		i++;
+		stack = stack->next;
 	}
+	return (0);
 }
 
-void	sort_a(t_pushswap *ps, int size)
+int	cheapest_in_range(t_pushswap *ps, int range)
 {
-	if (size == 2)
+	int	i;
+	int	tmp;
+	int	cost;
+	int	smallest;
+
+	smallest = 2147483647;
+	cost = 0;
+	i = -1;
+        while (++i < range)
+        {
+                tmp = cost_to_top(ps->a, i);
+                if (tmp < 0)
+                {
+                        if (-tmp < smallest)
+                        {
+                                smallest = -tmp;
+                                cost = tmp;
+                        }
+                }
+                else if (tmp < smallest)
+                {
+                        smallest = tmp;
+                        cost = tmp;
+                }
+        }
+	return (cost);
+}
+
+int	cheapest_in_range2(t_pushswap *ps, int range)
+{
+	int	i;
+	int	tmp;
+	int	cost;
+	int	smallest;
+
+	smallest = 2147483647;
+	cost = 0;
+	i = -1;
+	while (++i < range)
 	{
-		if (ps->a->value > ps->a->next->value)
-			sa(ps);
-	}
-	else if (size == 3 && ps->size_a == 3)
-		first_algorithm(ps);
-	else if (size == 3)
-	{
-		while (size != 3 || !(ps->a->value < ps->a->next->value
-				&& ps->a->next->value < ps->a->next->next->value))
+		tmp = cost_to_top(ps->b, stack_size(ps->b) - i - 1);
+		if (tmp < 0)
 		{
-			if (size == 3 && ps->a->value > ps->a->next->value)
-				sa(ps);
-			else if (size == 3 && !(ps->a->next->next->value > ps->a->value
-					&& ps->a->next->next->value > ps->a->next->value))
+			if (-tmp < smallest)
 			{
-				pb(ps);
-				size--;
+				smallest = -tmp;
+				cost = tmp;
 			}
-			else if (ps->a->value > ps->a->next->value)
-				sa(ps);
-			else if (size++)
-				ra(ps);
+		}
+		else if (tmp < smallest)
+		{
+			smallest = tmp;
+			cost = tmp;
 		}
 	}
+	return (cost);
 }
 
-void	quick_b(t_pushswap *ps, int size, int flag)
+void	make_moves(t_pushswap *ps, int cost)
 {
-	int	pivot;
-	int	elements;
-
-	if (is_sorted(ps->a) && (ps->b))
-		while (ps->b)
-			pa(ps);
-	if (size <= 3)
+	if (cost < 0)
 	{
-		sort_b(ps, size);
-		return ;
+		while (cost++ < 0)
+			rra(ps);
 	}
-	pivot = find_pivot(ps->b, size);
-	if (!pivot)
-		return ;
-	elements = size;
-	while (size != elements / 2)
+	else if (cost > 0)
 	{
-		if (ps->b->value >= pivot && size--)
-			pa(ps);
-		else if (++flag)
-			rb(ps);
-	}
-	while (elements / 2 != ps->size_b && flag--)
-		rrb(ps);
-	quick_a(ps, elements / 2 + elements % 2, 0);
-	quick_b(ps, elements / 2, 0);
-}
-
-void	quick_a(t_pushswap *ps, int size, int flag)
-{
-	int	pivot;
-	int	elements;
-
-	if (is_sorted(ps->a) && !(ps->b))
-		return ;
-	if (size <= 3)
-	{
-		sort_a(ps, size);
-		return ;
-	}
-	pivot = find_pivot(ps->a, size);
-	if (!pivot && !flag)
-		return ;
-	elements = size;
-	while (size != elements / 2 + elements % 2)
-	{
-		if (ps->a->value < pivot && size--)
-			pb(ps);
-		else if (++flag)
+		while (cost-- > 0)
 			ra(ps);
 	}
-	while (elements / 2 + elements % 2 != ps->size_a && flag--)
-		rra(ps);
-	quick_a(ps, elements / 2 + elements % 2, 0);
-	quick_b(ps, elements / 2, 0);
+	pb(ps);
+}
+
+void	make_moves2(t_pushswap *ps, int cost)
+{
+	if (cost < 0)
+	{
+		while (cost++ < 0)
+			rrb(ps);
+	}
+	else if (cost > 0)
+	{
+		while (cost-- > 0)
+			rb(ps);
+	}
+	pa(ps);
+}
+
+void	third_algorithm(t_pushswap *ps)
+{
+	int	size;
+	int	cost;
+	int	*array;
+	int	range;
+
+	range = 10;
+	while (ps->a)
+	{
+		size = stack_size(ps->a);
+		array = bubblesort(stack_to_array(ps->a), size);
+		set_index(ps->a, array, size);
+		cost = cheapest_in_range(ps, range);
+		make_moves(ps, cost);
+		range--;
+		if (!range)
+			range = 10;
+	}
+	range = 1;
+	while (ps->b)
+	{
+		size = stack_size(ps->b);
+		array = bubblesort(stack_to_array(ps->b), size);
+		set_index(ps->b, array, size);
+		cost = cheapest_in_range2(ps, range);
+		make_moves2(ps, cost);
+	}
 }

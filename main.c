@@ -6,7 +6,7 @@
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 15:09:31 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/02/16 16:22:19 by jazevedo         ###   ########.fr       */
+/*   Updated: 2024/02/19 16:36:02 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,6 @@ int	main(int argc, char **argv)
 	if (invalid_arguments(&ps, argc, argv))
 		return (1);
 	size = stack_size(ps.a);
-	ps.size_a = size;
-	ps.size_b = 0;
 	print_stacks(&ps);
 	write(1, "\n", 1);
 	if (!is_sorted(ps.a) || ps.b)
@@ -82,7 +80,7 @@ int	main(int argc, char **argv)
 		else if (size <= 5)
 			second_algorithm(&ps);
 		else
-			quick_a(&ps, size, 0);
+			third_algorithm(&ps);
 	}
 	write(1, "\n", 1);
 	print_stacks(&ps);

@@ -1,7 +1,5 @@
 #include "push_swap.h"
 
-#include <stdio.h>
-
 int	*stack_to_array(t_stack *stack)
 {
 	int	i;
@@ -137,17 +135,34 @@ int	cheapest_in_range2(t_pushswap *ps, int range)
 	return (cost);
 }
 
+int	last_value(t_stack *stack)
+{
+	while (stack->next)
+		stack = stack->next;
+	return (stack->value);
+}
+
 void	make_moves(t_pushswap *ps, int cost)
 {
 	if (cost < 0)
 	{
 		while (cost++ < 0)
-			rra(ps);
+		{
+			if (ps->b && ps->b->value < last_value(ps->b))
+				rrr(ps);
+			else
+				rra(ps);
+		}
 	}
 	else if (cost > 0)
 	{
 		while (cost-- > 0)
-			ra(ps);
+		{
+			if (ps->b && ps->b->next && ps->b->value < ps->b->next->value)
+				rr(ps);
+			else
+				ra(ps);
+		}
 	}
 	pb(ps);
 }
@@ -157,12 +172,22 @@ void	make_moves2(t_pushswap *ps, int cost)
 	if (cost < 0)
 	{
 		while (cost++ < 0)
-			rrb(ps);
+		{
+			if (ps->a && ps->a->value > last_value(ps->a))
+				rrr(ps);
+			else
+				rrb(ps);
+		}
 	}
 	else if (cost > 0)
 	{
 		while (cost-- > 0)
-			rb(ps);
+		{
+			if (ps->a && ps->a->next && ps->a->value > ps->a->next->value)
+				rr(ps);
+			else
+				rb(ps);
+		}
 	}
 	pa(ps);
 }
@@ -173,8 +198,14 @@ void	third_algorithm(t_pushswap *ps)
 	int	cost;
 	int	*array;
 	int	range;
+	int	backup;
 
-	range = 10;
+	range = 3;
+	if (stack_size(ps->a) >= 500)
+		range = 40;
+	else if (stack_size(ps->a) >= 100)
+		range = 12;
+	backup = range;
 	while (ps->a)
 	{
 		size = stack_size(ps->a);
@@ -184,8 +215,9 @@ void	third_algorithm(t_pushswap *ps)
 		make_moves(ps, cost);
 		range--;
 		if (!range)
-			range = 10;
+			range = backup;
 	}
+	// Arrumar essa parte para ter menos movimentos.
 	range = 1;
 	while (ps->b)
 	{
@@ -196,3 +228,7 @@ void	third_algorithm(t_pushswap *ps)
 		make_moves2(ps, cost);
 	}
 }
+
+// less than 100 elements -> range = 3;
+// 100 elements -> range = 12;
+// 500 or more elements -> range = 40;

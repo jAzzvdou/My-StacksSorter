@@ -2,7 +2,7 @@
 
 #include <stdio.h>
 
-int	cheapest_in_range(t_pushswap *ps, int range)
+int	cheapest_in_range(t_pushswap *ps, int start, int end)
 {
 	int	i;
 	int	tmp;
@@ -11,10 +11,11 @@ int	cheapest_in_range(t_pushswap *ps, int range)
 
 	smallest = 2147483647;
 	cost = 0;
-	i = -1;
-        while (++i < range)
+	i = start - 1;
+        while (++i <= end)
         {
                 tmp = cost_to_top(ps->a, i);
+		printf("try: %d.\n", tmp);
                 if (tmp < 0)
                 {
                         if (-tmp < smallest)
@@ -49,13 +50,16 @@ void	make_moves(t_pushswap *ps, int cost)
 
 void	third_algorithm(t_pushswap *ps)
 {
-	int	size;
-	int	range;
-	int	start;
-	int	end;
+	int size = stack_size(ps->a);
+	int range = set_range(size);
+	int start = ((size / 2) + (size % 2)) - range - 1;
+	int end = ((size / 2) + (size % 2)) + range - 1;
 
-	size = stack_size(ps->a);
-	range = set_range(size);
-	start = ((size / 2) + (size % 2)) - range;
-	end = ((size / 2) + (size % 2)) + range;
+	int *array = bubblesort(stack_to_array(ps->a), size);
+	set_index(ps->a, array, size);
+
+	int cost = cheapest_in_range(ps, start, end);
+
+	printf("pivot: %d.\n", (size / 2));
+	printf("cost: %d.\n", cost);
 }

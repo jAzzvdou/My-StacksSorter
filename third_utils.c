@@ -64,25 +64,3 @@ int	set_range(int size)
 		range = 6;
 	return (range);
 }
-
-int     cost_to_top(t_stack *stack, int index)
-{
-        int     i;
-        int     size;
-
-        size = stack_size(stack);
-        i = 0;
-        while (stack)
-        {
-                if (stack->index == index)
-                {
-                        if (i < size / 2)
-                                return (i);
-                        else
-                                return (-(size - i));
-                }
-                i++;
-                stack = stack->next;
-        }
-        return (0);
-}

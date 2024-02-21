@@ -68,7 +68,7 @@ int	main(int argc, char **argv)
 	size = stack_size(ps.a);
 	//print_stacks(&ps);
 	//write(1, "\n", 1);
-	while (!is_sorted(ps.a) || ps.b)
+	if (!is_sorted(ps.a) || ps.b)
 	{
 		if (size == 2)
 		{

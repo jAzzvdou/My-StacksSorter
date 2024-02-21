@@ -45,7 +45,15 @@ int		stack_size(t_stack *stack);
 //----------ALGORITHMS----------//
 void	first_algorithm(t_pushswap *ps);
 void	second_algorithm(t_pushswap *ps);
+
 void	third_algorithm(t_pushswap *ps);
+
+//----------THIRD UTILS----------//
+int	*stack_to_array(t_stack *stack);
+int	*bubblesort(int *stack, int size);
+void	set_index(t_stack *stack, int *array, int size);
+int		set_range(int size);
+int		cost_to_top(t_stack *stack, int index);
 
 //----------OPERATIONS----------//
 int		sa(t_pushswap *pushswap);

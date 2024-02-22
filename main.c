@@ -80,7 +80,7 @@ int	main(int argc, char **argv)
 		else if (size <= 5)
 			second_algorithm(&ps);
 		else
-			third_algorithm(&ps);
+			third_algorithm(&ps, size);
 	}
 	write(1, "\n", 1);
 	print_stacks(&ps);

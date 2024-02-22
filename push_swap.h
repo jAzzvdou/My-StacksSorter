@@ -46,7 +46,7 @@ int		stack_size(t_stack *stack);
 void	first_algorithm(t_pushswap *ps);
 void	second_algorithm(t_pushswap *ps);
 
-void	third_algorithm(t_pushswap *ps);
+void	third_algorithm(t_pushswap *ps, int size);
 
 //----------THIRD UTILS----------//
 int	*stack_to_array(t_stack *stack);

@@ -11,6 +11,28 @@ void	third_algorithm(t_pushswap *ps, int size)
 
 	int start = (size / 2) - range;
 	int end = (size / 2) + range;
-	printf("start: %d.\n", start);
-	printf("end: %d.\n", end);
+	while (stack_size(ps->a) > 1)
+	{
+		int finded = 0;
+		int i = start;
+		while (i <= end)
+		{
+			if (ps->a->index == array[i])
+			{
+				pb(ps);
+				finded = 1;
+			}
+			i++;
+		}
+		if (!finded)
+		{
+			if (stack_size(ps->b) > 1
+				&& ps->b->index < ps->b->next->index)
+				rr(ps);
+			else
+				ra(ps);
+		}
+		start -= range;
+		end += range;
+	}
 }

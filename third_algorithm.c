@@ -13,18 +13,37 @@ void	third_algorithm(t_pushswap *ps)
 	int start = (size / 2) - range;
 	int end = (size / 2) + range;
 	int total = end - start + 1;
-	while (stack_size(ps->b) != total)
+	while (stack_size(ps->a) > 1)
 	{
-		int i = start;
-		while (i <= end)
+		while (stack_size(ps->b) < total)
 		{
-			if (ps->a->value == array[i])
-				pb(ps);
-			i++;
+			int i = start;
+			int finded = 0;
+			int rot = 0;
+			while (i <= end)
+			{
+				if (ps->a->index == array[i])
+				{
+					pb(ps);
+					finded = 1;
+				}
+				i++;
+			}
+			if (!finded)
+			{
+				if (ps->a && ps->b && ps->b->next && ps->b->value < ps->b->next->value)
+				{
+					rr(ps);
+					rot = 1;
+				}
+				else
+					ra(ps);
+			}
+			if (!rot && ps->b && ps->b->next && ps->b->value < ps->b->next->value)
+				rb(ps);
 		}
-		if (ps->a && ps->b && ps->b->next && ps->b->next->value > ps->b->value)
-			rr(ps);
-		else
-			ra(ps);
+		start -= range;
+		end += range;
+		total = end - start + 1;
 	}
 }

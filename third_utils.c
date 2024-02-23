@@ -43,11 +43,12 @@ void    set_index(t_stack *stack, int *array, int size)
         int     i;
         while (stack)
         {
-                i = -1;
-                while (++i < size)
+                i = 0;
+                while (i < size)
                 {
                         if (stack->value == array[i])
                                 stack->index = i;
+			i++;
                 }
                 stack = stack->next;
         }

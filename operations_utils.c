@@ -6,7 +6,7 @@
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 15:19:46 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/02/06 14:37:11 by jazevedo         ###   ########.fr       */
+/*   Updated: 2024/02/23 14:48:43 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ int	push(t_stack **stack_from, t_stack **stack_to)
 {
 	t_stack	*second;
 
+	if (!*stack_from)
+		return (0);
 	second = (*stack_from)->next;
 	(*stack_from)->next = *stack_to;
 	*stack_to = *stack_from;

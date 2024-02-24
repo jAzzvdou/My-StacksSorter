@@ -6,7 +6,7 @@
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 15:11:33 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/02/24 17:38:19 by jazevedo         ###   ########.fr       */
+/*   Updated: 2024/02/24 17:55:42 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@
 
 
 //----------RANGE INFO----------//
-typedef struct s_range
+typedef struct s_range_info
 {
 	int		start;
 	int		end;
 	int		size;
-	int	*array;
-}	t_range;
+	int	*index_arr;
+}	t_range_info;
 
 //----------STACKS INFO----------//
 typedef struct s_stack

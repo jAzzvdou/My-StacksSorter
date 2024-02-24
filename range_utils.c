@@ -14,20 +14,20 @@ int	set_range(int size)
 	return (range);
 }
 
-t_range	*start_range(int size)
+t_range	*start_range(t_pushswap *ps, int size)
 {
-	t_range	*range;
+	t_range_info	*r;
 
-	range = malloc(sizeof(t_range));
-	range->start = ((size / 2)) - set_range(size);
-	range->end = ((size / 2) + (size % 2)) + (set_range(size) - 1);
-	range->size = range->end - range->start + 1;
-	range->array = malloc(sizeof(int) * (range->end - range->start) + 1);
-	int  j = range->start;
+	r = malloc(sizeof(t_range));
+	r->start = ((size / 2)) - ps->range;
+	r->end = ((size / 2) + (size % 2)) + (ps->range - 1);
+	r->size = range->end - range->start + 1;
+	r->index_arr = malloc(sizeof(int) * (r->end - r->start) + 1);
+	int  ii = r->start;
 	int i = 0;
-	while (i <= range->end - range->start)
-		range->array[i++] = j++;
-	return (range);
+	while (i <= r->end - r->start)
+		r->index_arr[i++] = ii++;
+	return (r);
 
 }
 
@@ -52,20 +52,20 @@ void	restart_range(t_pushswap *ps)
 	ps->r = range;
 }
 
-void	rebuild_range(t_pushswap *ps)
+void	remove_from_range(t_pushswap *ps)
 {
-	int	*new_range;
+	int	*new_r;
 
-	new_range = malloc(sizeof(int) * (ps->r->size - 1));
+	new_r = malloc(sizeof(int) * (ps->r->size - 1));
+	int ii = 0;
 	int i = 0;
-	int j = 0;
 	while (i < ps->r->size)
 	{
-		if (ps->r->array[i] == ps->a->index)
+		if (ps->r->index_arr[i] == ps->a->index)
 			i++;
 		else
-			new_range[j++] = ps->r->array[i++];
+			new_range[ii++] = ps->r->index_arr[i++];
 	}
-	free(ps->r->array);
-	ps->r->array = new_range;
+	free(ps->r->index_arr);
+	ps->r->index_arr = new_r;
 }

@@ -2,57 +2,107 @@
 
 #include <stdio.h>
 
-int	check_range(t_stack *stack, int *array, int start, int end)
+void print_range(t_range *range)
+{
+	int i = 0;
+
+	while (i < range->size)
+	{
+		printf("%d|", range->array[i]);
+		i++;
+	}
+	printf("\n");
+}
+
+int	cost_to_top(t_stack *stack, int index)
 {
 	int	i;
+	int	size;
 
+	size = stack_size(stack);
+	i = 0;
 	while (stack)
 	{
-		i = start - 1;
-		while (++i <= end)
-			if (stack->index == array[i])
-				return (1);
+		if (stack->index == index)
+		{
+			if (i < size / 2)
+				return (i);
+			else
+				return (-(size - i));
+		}
+		i++;
 		stack = stack->next;
 	}
 	return (0);
+}
 
+int	cheapest_in_range(t_pushswap *ps)
+{
+	int	i;
+	int	tmp;
+	int	cost;
+	int	smallest;
+
+	smallest = 2147483647;
+	cost = 0;
+	i = -1;
+        while (++i < ps->r->size)
+        {
+                tmp = cost_to_top(ps->a, ps->r->array[i]);
+                if (tmp < 0)
+                {
+                        if (-tmp < smallest)
+                        {
+                                smallest = -tmp;
+                                cost = tmp;
+                        }
+                }
+                else if (tmp < smallest)
+                {
+                        smallest = tmp;
+                        cost = tmp;
+                }
+        }
+	return (cost);
+}
+
+void	make_moves(t_pushswap *ps, int cost)
+{
+	if (cost < 0)
+	{
+		while (cost++ < 0)
+			rra(ps);
+	}
+	else if (cost > 0)
+	{
+		while (cost-- > 0)
+			ra(ps);
+	}
 }
 
 void	third_algorithm(t_pushswap *ps, int size)
 {
-	int range = set_range(size);
+	ps->range = set_range(size);
 
-	int *array = bubblesort(stack_to_array(ps->a), size);
-	set_index(ps->a, array, size);
+	int *sorted_arr = bubblesort(stack_to_array(ps->a), size);
+	set_index(ps->a, sorted_arr, size);
 
-	int start = ((size / 2)) - range;
-	int end = ((size / 2) + (size % 2)) + (range - 1);
-
-	while (ps->a->next)
-	{
-		int index = -1;
-		int size_a = stack_size(ps->a);
-		while (check_range(ps->a, array, start, end) && ++index < size_a)
+	ps->r = start_range(size);
+	int temp = ps->r->size;
+	//while (ps->a)
+	//{
+		while (ps->r->size)
 		{
-			int i = start - 1;
-			while (++i <= end)
-				if (ps->a->index == array[i])
-					pb(ps);
-			if (i > end)
-			{
-				if (stack_size(ps->b) > 1
-					&& ps->b->index < ps->b->next->index)
-					rr(ps);
-				else
-					ra(ps);
-			}
-			//print_stacks(ps);
+			//print_range(ps->r);
+			int cheapest = cheapest_in_range(ps);
+			make_moves(ps, cheapest);
+			rebuild_range(ps);
+			ps->r->size--;
+			//print_range(ps->r);
+			pb(ps);
 		}
-		start -= range;
-		if (start < 0)
-			start = 0;
-		end += range;
-		if (end > size - 1)
-			end = size - 1;
-	}
+		size = stack_size(ps->a);
+		ps->r->size = temp;
+		//restart_range(ps); //ERRO AQUI.
+	//}
 }

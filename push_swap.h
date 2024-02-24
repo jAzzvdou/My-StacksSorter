@@ -6,7 +6,7 @@
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 15:11:33 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/02/19 14:52:28 by jazevedo         ###   ########.fr       */
+/*   Updated: 2024/02/24 17:38:19 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,17 @@
 # include <unistd.h>
 # include <stdlib.h>
 
+
+//----------RANGE INFO----------//
+typedef struct s_range
+{
+	int		start;
+	int		end;
+	int		size;
+	int	*array;
+}	t_range;
+
+//----------STACKS INFO----------//
 typedef struct s_stack
 {
 	int				value;
@@ -23,10 +34,13 @@ typedef struct s_stack
 	struct s_stack	*next;
 }	t_stack;
 
+//----------STRUCT MAIN----------//
 typedef struct s_pushswap
 {
 	t_stack	*a;
 	t_stack	*b;
+	t_range *r;
+	int	range;
 }	t_pushswap;
 
 //----------ARGUMENTS----------//
@@ -47,13 +61,6 @@ void	first_algorithm(t_pushswap *ps);
 void	second_algorithm(t_pushswap *ps);
 
 void	third_algorithm(t_pushswap *ps, int size);
-
-//----------THIRD UTILS----------//
-int	*stack_to_array(t_stack *stack);
-int	*bubblesort(int *stack, int size);
-void	set_index(t_stack *stack, int *array, int size);
-int		set_range(int size);
-int		cost_to_top(t_stack *stack, int index);
 
 //----------OPERATIONS----------//
 int		sa(t_pushswap *pushswap);
@@ -76,6 +83,17 @@ int		swap(t_stack **stack);
 int		push(t_stack **stack_from, t_stack **stack_to);
 int		rotate(t_stack **stack);
 int		reverse_rotate(t_stack **stack);
+
+//----------ARRAY UTILS----------//
+int	*stack_to_array(t_stack *stack);
+int	*bubblesort(int *stack, int size);
+void	set_index(t_stack *stack, int *array, int size);
+
+//----------RANGE UTILS----------//
+int	set_range(int size);
+t_range	*start_range(int size);
+void	rebuild_range(t_pushswap *ps);
+void	restart_range(t_pushswap *ps);
 
 //----------UTILS----------//
 size_t	ft_strlen(const char *str);

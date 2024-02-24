@@ -2,16 +2,17 @@ NAME	=	push_swap
 
 SRCS	=	main.c             \
 		verify_argvs.c     \
-		stack_utils.c      \
 		first_algorithm.c  \
 		second_algorithm.c \
 		third_algorithm.c  \
-		third_utils.c      \
 		s_operations.c     \
 		p_operations.c     \
 		r_operations.c     \
 		rr_operations.c    \
+		stack_utils.c      \
 		operations_utils.c \
+		array_utils.c      \
+		range_utils.c      \
 		utils.c            \
 		print_stacks.c
 
@@ -26,7 +27,7 @@ OBJS_BONUS	=	$(SRCS_BONUS:.c=.o)
 
 CC	=	cc
 
-CFLAGS	=	-Wall -Werror -Wextra
+CFLAGS	=	-Wall -Werror -Wextra -ggdb3
 
 RM	=	rm -rf 
 

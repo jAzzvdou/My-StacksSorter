@@ -2,7 +2,7 @@
 
 #include <stdio.h>
 
-void	print_range(t_range *r)
+void	print_range(t_range_info *r)
 {
 	int i = 0;
 
@@ -89,8 +89,8 @@ void	third_algorithm(t_pushswap *ps, int size)
 
 	ps->r = start_range(ps, size);
 	int temp = ps->r->size;
-	while (ps->a)
-	{
+	//while (ps->a)
+	//{
 		while (ps->r->size)
 		{
 			//print_range(ps->r);
@@ -103,6 +103,6 @@ void	third_algorithm(t_pushswap *ps, int size)
 		}
 		size = stack_size(ps->a);
 		ps->r->size = temp;
-		//restart_range(ps); //ERRO AQUI.
-	}
+		restart_range(ps); //ERRO AQUI.
+	//}
 }

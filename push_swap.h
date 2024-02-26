@@ -6,7 +6,7 @@
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 15:11:33 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/02/24 17:55:42 by jazevedo         ###   ########.fr       */
+/*   Updated: 2024/02/26 15:11:26 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ typedef struct s_pushswap
 {
 	t_stack	*a;
 	t_stack	*b;
-	t_range *r;
+	t_range_info *r;
 	int	range;
 }	t_pushswap;
 
@@ -91,8 +91,8 @@ void	set_index(t_stack *stack, int *array, int size);
 
 //----------RANGE UTILS----------//
 int	set_range(int size);
-t_range	*start_range(int size);
-void	rebuild_range(t_pushswap *ps);
+t_range_info	*start_range(t_pushswap *ps, int size);
+void	remove_from_range(t_pushswap *ps);
 void	restart_range(t_pushswap *ps);
 
 //----------UTILS----------//

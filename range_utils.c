@@ -8,7 +8,7 @@ int	set_range(int size)
 
 	range = 1;
 	if (size >= 500)
-		range = 20;
+		range = 18;
 	else if (size >= 100)
 		range = 6;
 	return (range);
@@ -31,27 +31,6 @@ t_range_info	*start_range(t_pushswap *ps, int size)
 
 }
 
-void	restart_range(t_pushswap *ps)
-{
-	t_range_info	*range;
-
-	range = malloc(sizeof(t_range_info));
-	range->start = ps->r->start - ps->range / 2;
-	range->end = ps->r->start - ps->range / 2;
-	range->index_arr = malloc(sizeof(int) * (ps->r->end - ps->r->start) - 1);
-	int  j = range->start;
-	int i = 0;
-	while(i <= range->end - range->start)
-	{
-		range->index_arr[i] = ps->r->index_arr[j];
-		i++;
-		j++;
-	}
-	free(ps->r->index_arr);
-	free(ps->r);
-	ps->r = range;
-}
-
 void	remove_from_range(t_pushswap *ps)
 {
 	int	*new_r;
@@ -68,4 +47,10 @@ void	remove_from_range(t_pushswap *ps)
 	}
 	free(ps->r->index_arr);
 	ps->r->index_arr = new_r;
+}
+
+void	next_range(t_pushswap *ps, int size)
+{
+	(void)size;
+	(void)ps;
 }

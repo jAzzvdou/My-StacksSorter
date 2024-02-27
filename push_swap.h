@@ -6,7 +6,7 @@
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 15:11:33 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/02/26 23:19:10 by jazevedo         ###   ########.fr       */
+/*   Updated: 2024/02/27 12:35:41 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@
 //----------RANGE INFO----------//
 typedef struct s_range_info
 {
+	int		size;
 	int		start;
 	int		end;
-	int		size;
 	int		*index_arr;
 }			t_range_info;
 
@@ -39,6 +39,8 @@ typedef struct s_pushswap
 	t_stack			*a;
 	t_stack			*b;
 	t_range_info	*r;
+	int				start;
+	int				end;
 	int				range;
 }			t_pushswap;
 

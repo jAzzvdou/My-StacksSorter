@@ -77,10 +77,10 @@ void	make_moves(t_pushswap *ps, int cost)
 	{
 		while (cost-- > 0)
 		{
-			if (ps->b && ps->b->next
-				&& ps->b->index < ps->b->next->index)
-				rr(ps);
-			else
+			//if (ps->b && ps->b->next
+			//	&& ps->b->index < ps->b->next->index)
+			//	rr(ps);
+			//else
 				ra(ps);
 		}
 	}
@@ -97,16 +97,18 @@ void	third_algorithm(t_pushswap *ps, int size)
 	{
 		while (ps->r->size)
 		{
-			int cheapest = cheapest_in_range(ps);
-			make_moves(ps, cheapest);
+			print_range(ps->r);
+			make_moves(ps, cheapest_in_range(ps));
 			remove_from_range(ps);
 			ps->r->size--;
 			pb(ps);
-			if (ps->b && ps->b->next && ps->b->index < ps->b->next->index)
-				rb(ps);
-			print_stacks(ps);
+			//if (ps->b && ps->b->next && ps->b->index < ps->b->next->index)
+			//	rb(ps);
 			print_range(ps->r);
+			print_stacks(ps);
 		}
+		free(ps->r->index_arr);
+		free(ps->r);
 		ps->r = next_range(ps, sorted_arr, size);
 	}
 }

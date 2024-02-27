@@ -6,7 +6,7 @@
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 15:11:33 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/02/26 19:27:25 by jazevedo         ###   ########.fr       */
+/*   Updated: 2024/02/26 23:19:10 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ void	set_index(t_stack *stack, int *array, int size);
 int		set_range(int size);
 t_range_info	*start_range(t_pushswap *ps, int size);
 void	remove_from_range(t_pushswap *ps);
-void	next_range(t_pushswap *ps, int size);
+t_range_info	*next_range(t_pushswap *ps, int *sorted_arr, int size);
 
 //----------UTILS----------//
 size_t	ft_strlen(const char *str);

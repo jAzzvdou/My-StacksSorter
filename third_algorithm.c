@@ -104,7 +104,9 @@ void	third_algorithm(t_pushswap *ps, int size)
 			pb(ps);
 			if (ps->b && ps->b->next && ps->b->index < ps->b->next->index)
 				rb(ps);
+			print_stacks(ps);
+			print_range(ps->r);
 		}
-		//next_range(ps, size); // ERROR.
+		ps->r = next_range(ps, sorted_arr, size);
 	}
 }

@@ -76,7 +76,7 @@ void	make_moves(t_pushswap *ps, int cost)
 	else if (cost > 0)
 	{
 		while (cost-- > 0)
-			ra(ps);
+				ra(ps);
 	}
 }
 
@@ -152,7 +152,7 @@ void	third_algorithm(t_pushswap *ps, int size)
 	int *sorted_arr = bubblesort(stack_to_array(ps->a), size);
 	set_index(ps->a, sorted_arr, size);
 	ps->r = start_range(ps, size);
-	int smallest_index = smallest_in_range(ps);
+	ps->smallest_index = smallest_in_range(ps);
 	while (ps->a)
 	{
 		while (ps->r->size)
@@ -161,7 +161,7 @@ void	third_algorithm(t_pushswap *ps, int size)
 			remove_from_range(ps);
 			ps->r->size--;
 			pb(ps);
-			if (ps->b && ps->b->index < smallest_index)
+			if (ps->b && ps->b->index < ps->smallest_index)
 				rb(ps);
 		}
 		free(ps->r->index_arr);

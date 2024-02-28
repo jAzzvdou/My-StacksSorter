@@ -6,7 +6,7 @@
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 15:11:33 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/02/28 13:28:56 by jazevedo         ###   ########.fr       */
+/*   Updated: 2024/02/28 18:56:12 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct s_stack
 {
 	int				value;
 	int				index;
+	int				target;
 	struct s_stack	*next;
 }	t_stack;
 
@@ -62,6 +63,10 @@ int		stack_size(t_stack *stack);
 void	first_algorithm(t_pushswap *ps);
 void	second_algorithm(t_pushswap *ps);
 void	third_algorithm(t_pushswap *ps, int size);
+
+//----------TURKISH----------//
+void	set_target(t_pushswap *ps);
+void	find_best_case(t_pushswap *ps);
 
 //----------OPERATIONS----------//
 int		sa(t_pushswap *pushswap);
@@ -101,5 +106,7 @@ size_t	ft_strlen(const char *str);
 int		ft_atoi(const char *nptr);
 long	ft_atol(const char *nptr);
 int		print_stacks(t_pushswap *ps);
+
+int	cost_to_top(t_stack *stack, int index);
 
 #endif //PUSH_SWAP

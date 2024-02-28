@@ -8,9 +8,9 @@ int	set_range(int size)
 
 	range = 1;
 	if (size >= 500)
-		range = 18;
+		range = 50;
 	else if (size >= 100)
-		range = 6;
+		range = 12;
 	return (range);
 }
 

@@ -76,7 +76,7 @@ void	make_moves(t_pushswap *ps, int cost)
 	else if (cost > 0)
 	{
 		while (cost-- > 0)
-				ra(ps);
+			ra(ps);
 	}
 }
 
@@ -95,55 +95,6 @@ int	smallest_in_range(t_pushswap *ps)
 	}
 	return (smallest);
 }
-
-////////////////////////////////////////////////////////////////////////////////
-/*
-int	cheapest_in_range2(t_pushswap *ps, int range)
-{
-	int	i;
-	int	tmp;
-	int	cost;
-	int	smallest;
-
-	smallest = 2147483647;
-	cost = 0;
-	i = -1;
-	while (++i < range)
-	{
-		tmp = cost_to_top(ps->b, stack_size(ps->b) - i - 1);
-		if (tmp < 0)
-		{
-			if (-tmp < smallest)
-			{
-				smallest = -tmp;
-				cost = tmp;
-			}
-		}
-		else if (tmp < smallest)
-		{
-			smallest = tmp;
-			cost = tmp;
-		}
-	}
-	return (cost);
-}
-
-void	make_moves2(t_pushswap *ps, int cost)
-{
-	if (cost < 0)
-	{
-		while (cost++ < 0)
-			rrb(ps);
-	}
-	else if (cost > 0)
-	{
-		while (cost-- > 0)
-			rb(ps);
-	}
-	pa(ps);
-}
-*/
-////////////////////////////////////////////////////////////////////////////////
 
 void	third_algorithm(t_pushswap *ps, int size)
 {
@@ -168,14 +119,12 @@ void	third_algorithm(t_pushswap *ps, int size)
 		free(ps->r);
 		ps->r = next_range(ps, sorted_arr, size);
 	}
-	/*
-	ps->range = 1;
+	pa(ps);
+	pa(ps);
+	pa(ps);
 	while (ps->b)
 	{
-		size = stack_size(ps->b);
-		sorted_arr = bubblesort(stack_to_array(ps->b), size);
-		set_index(ps->b, sorted_arr, size);
-		make_moves2(ps, cheapest_in_range2(ps, ps->range));
+		set_target(ps);
+		find_best_case(ps);
 	}
-	*/
 }

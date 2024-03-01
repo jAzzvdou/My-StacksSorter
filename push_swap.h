@@ -6,7 +6,7 @@
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 15:11:33 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/02/28 18:56:12 by jazevedo         ###   ########.fr       */
+/*   Updated: 2024/03/01 15:16:26 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,8 @@ void	second_algorithm(t_pushswap *ps);
 void	third_algorithm(t_pushswap *ps, int size);
 
 //----------TURKISH----------//
-void	set_target(t_pushswap *ps);
-void	find_best_case(t_pushswap *ps);
+void	set_target(t_stack *a, t_stack *b);
+void	find_best_match(t_pushswap *ps, t_stack *b);
 
 //----------OPERATIONS----------//
 int		sa(t_pushswap *pushswap);

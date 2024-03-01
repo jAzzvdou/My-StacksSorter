@@ -1,63 +1,83 @@
 #include "push_swap.h"
 
 #include <stdio.h>
-int	smallest_in_a(t_pushswap *ps)
+int	smallest_in_a(t_stack *a)
 {
 	int	smallest;
 
-	smallest = ps->a->index;
-	while (ps->a)
+	smallest = a->index;
+	while (a)
 	{
-		if (ps->a->index < smallest)
-			smallest = ps->a->index;
-		ps->a = ps->a->next;
+		if (a->index < smallest)
+			smallest = a->index;
+		a = a->next;
 	}
 	return (smallest);
 }
 
-void	set_target(t_pushswap *ps)
+void	set_target(t_stack *a, t_stack *b)
 {
 	int	best_match_index;
-	t_stack *tmp_a;
+	t_stack	*tmp_a;
 
-	while (ps->b)
+	while (b)
 	{
 		best_match_index = 2147483647;
-		tmp_a = ps->a;
+		tmp_a = a;
 		while (tmp_a)
 		{
-			if (tmp_a->index > ps->b->index
+			if (tmp_a->index > b->index
 				&& tmp_a->index < best_match_index)
 				best_match_index = tmp_a->index;
 			tmp_a = tmp_a->next;
 		}
 		if (best_match_index == 2147483647)
-			ps->b->target = smallest_in_a(ps); 
+			b->target = smallest_in_a(tmp_a); 
 		else
-			ps->b->target = best_match_index;
-		ps->b = ps->b->next;
+			b->target = best_match_index;
+		b = b->next;
 	}
 }
 
-void	make_moves2(t_pushswap *ps, int target, int index)
+void	make_moves2(t_pushswap *ps, int *cost_ab)
 {
-	if (index <= (stack_size(ps->b) / 2) && target <= (stack_size(ps->a) / 2))
+	if (cost_ab[0] > 0 && cost_ab[1] > 0)
 	{
-		while (ps->b && ps->b->index != index && ps->a->index != target)
+		while (cost_ab[0] > 0 && cost_ab[1] > 0)
+		{
+			cost_ab[0]--;
+			cost_ab[1]--;
 			rr(ps);
-		while (ps->b && ps->b->index != index)
-			rb(ps);
-		while (ps->a->index != target)
+		}
+		while (cost_ab[0] > 0)
+		{
+			cost_ab[0]--;
 			ra(ps);
+		}
+		while (cost_ab[1] > 0)
+		{
+			cost_ab[1]--;
+			rb(ps);
+		}
 	}
-	else if (index > (stack_size(ps->b) / 2) && target > (stack_size(ps->a) / 2))
+	if (cost_ab[0] < 0 && cost_ab[1] < 0)
 	{
-		while (ps->b->index != index && ps->a->index != target)
+		while (cost_ab[0] < 0 && cost_ab[1] < 0)
+		{
+			cost_ab[0]++;
+			cost_ab[1]++;
 			rrr(ps);
-		while (ps->b->index != index)
-			rrb(ps);
-		while (ps->a->index != target)
-			rra(ps);
+		}
+		while (cost_ab[0] < 0)
+		{
+			cost_ab[0]++;
+			ra(ps);
+		}
+		while (cost_ab[1] < 0)
+		{
+			cost_ab[1]++;
+			rb(ps);
+		}
 	}
 	pa(ps);
 }
@@ -69,26 +89,23 @@ int	true_value(int cost)
 	return (cost);
 }
 
-void	find_best_case(t_pushswap *ps)
+void	find_best_match(t_pushswap *ps, t_stack *b)
 {
+	int	cost_ab[2];
 	int	cost_sum;
-	int	index;
-	int	target;
 	int	cheapest_sum;
 
 	cheapest_sum = 2147483647;
-	index = -1;
-	target = -1;
-	while (ps->b)
+	while (b)
 	{
-		cost_sum = true_value(cost_to_top(ps->b, ps->b->index)) + true_value(cost_to_top(ps->a, ps->b->target));
+		cost_sum = true_value(cost_to_top(ps->b, b->index)) + true_value(cost_to_top(ps->a, b->target));
 		if (cost_sum < cheapest_sum)
 		{
 			cheapest_sum = cost_sum;
-			index = ps->b->index;
-			target = ps->b->target;
+			cost_ab[0] = cost_to_top(ps->a, b->target);
+			cost_ab[1] = cost_to_top(ps->b, b->index);
 		}
-		ps->b = ps->b->next;
+		b = b->next;
 	}
-	make_moves2(ps, target, index);
+	make_moves2(ps, cost_ab);
 }

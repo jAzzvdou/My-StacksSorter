@@ -122,10 +122,9 @@ void	third_algorithm(t_pushswap *ps, int size)
 	pa(ps);
 	pa(ps);
 	pa(ps);
-	set_target(ps);
-	/*while (ps->b)
+	while (ps->b)
 	{
-		set_target(ps);
-		find_best_case(ps);
-	}*/
+		set_target(ps->a, ps->b);
+		find_best_match(ps, ps->b);
+	}
 }

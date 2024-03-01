@@ -76,14 +76,15 @@ void	find_best_case(t_pushswap *ps)
 	int	target;
 	int	cheapest_sum;
 
-	cheapest = 2147483647;
-	cheapest_index = -1;
+	cheapest_sum = 2147483647;
+	index = -1;
+	target = -1;
 	while (ps->b)
 	{
 		cost_sum = true_value(cost_to_top(ps->b, ps->b->index)) + true_value(cost_to_top(ps->a, ps->b->target));
 		if (cost_sum < cheapest_sum)
 		{
-			cheapest = cost_sum;
+			cheapest_sum = cost_sum;
 			index = ps->b->index;
 			target = ps->b->target;
 		}

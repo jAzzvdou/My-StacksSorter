@@ -1,5 +1,6 @@
 #include "push_swap.h"
 
+#include <stdio.h>
 int	smallest_in_a(t_pushswap *ps)
 {
 	int	smallest;
@@ -16,29 +17,28 @@ int	smallest_in_a(t_pushswap *ps)
 
 void	set_target(t_pushswap *ps)
 {
-	int	best_case = 2147483647;
-	t_stack *tmp;
-	
-	print_stacks(ps);
+	int	best_match_index;
+	t_stack *tmp_a;
+
 	while (ps->b)
 	{
-		tmp = ps->a;
-		while (tmp)
+		best_match_index = 2147483647;
+		tmp_a = ps->a;
+		while (tmp_a)
 		{
-			if (tmp->index > ps->b->index
-				&& tmp->index < best_case)
-				best_case = tmp->index;
-			tmp = tmp->next;
+			if (tmp_a->index > ps->b->index
+				&& tmp_a->index < best_match_index)
+				best_match_index = tmp_a->index;
+			tmp_a = tmp_a->next;
 		}
-		if (best_case == 2147483647)
+		if (best_match_index == 2147483647)
 			ps->b->target = smallest_in_a(ps); 
 		else
-			ps->b->target = best_case;
+			ps->b->target = best_match_index;
 		ps->b = ps->b->next;
 	}
 }
 
-#include <stdio.h>
 void	make_moves2(t_pushswap *ps, int target, int index)
 {
 	if (index <= (stack_size(ps->b) / 2) && target <= (stack_size(ps->a) / 2))
@@ -71,24 +71,23 @@ int	true_value(int cost)
 
 void	find_best_case(t_pushswap *ps)
 {
-	int	temp;
-	int	cheapest;
-	int	cheapest_index;
-	int	cheapest_target;
+	int	cost_sum;
+	int	index;
+	int	target;
+	int	cheapest_sum;
 
 	cheapest = 2147483647;
 	cheapest_index = -1;
 	while (ps->b)
 	{
-		temp = true_value(cost_to_top(ps->b, ps->b->index)) + true_value(cost_to_top(ps->a, ps->b->target));
-		if (temp < cheapest)
+		cost_sum = true_value(cost_to_top(ps->b, ps->b->index)) + true_value(cost_to_top(ps->a, ps->b->target));
+		if (cost_sum < cheapest_sum)
 		{
-
-			cheapest = temp;
-			cheapest_index = ps->b->index;
-			cheapest_target = ps->b->target;
+			cheapest = cost_sum;
+			index = ps->b->index;
+			target = ps->b->target;
 		}
 		ps->b = ps->b->next;
 	}
-	make_moves2(ps, cheapest_target, cheapest_index);
+	make_moves2(ps, target, index);
 }

@@ -6,7 +6,7 @@
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 15:09:31 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/03/01 17:18:01 by jazevedo         ###   ########.fr       */
+/*   Updated: 2024/03/02 01:04:28 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,9 @@ int	invalid_arguments(t_pushswap *ps, int argc, char **argv)
 int	main(int argc, char **argv)
 {
 	t_pushswap	ps;
-	int		size;
+	int			size;
 
-	ps = (t_pushswap){0};	
+	ps = (t_pushswap){0};
 	if (invalid_arguments(&ps, argc, argv))
 		return (1);
 	size = stack_size(ps.a);

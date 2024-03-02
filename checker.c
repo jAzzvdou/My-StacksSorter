@@ -6,55 +6,55 @@
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 01:06:00 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/02/09 01:13:09 by jazevedo         ###   ########.fr       */
+/*   Updated: 2024/03/01 21:57:21 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void    free_everything(t_pushswap *ps)
+void	free_everything(t_pushswap *ps)
 {
-        t_stack *temp;
+	t_stack	*temp;
 
-        while (ps->a)
-        {
-                temp = ps->a;
-                ps->a = ps->a->next;
-                free(temp);
-        }
-        while (ps->b)
-        {
-                temp = ps->b;
-                ps->b = ps->b->next;
-                free(temp);
-        }
+	while (ps->a)
+	{
+		temp = ps->a;
+		ps->a = ps->a->next;
+		free(temp);
+	}
+	while (ps->b)
+	{
+		temp = ps->b;
+		ps->b = ps->b->next;
+		free(temp);
+	}
 }
 
-int     argvs_size(char **argv)
+int	argvs_size(char **argv)
 {
-        int     i;
+	int	i;
 
-        i = 0;
-        while (argv[i])
-                i++;
-        return (i);
+	i = 0;
+	while (argv[i])
+		i++;
+	return (i);
 }
 
-int     invalid_arguments(t_pushswap *ps, int argc, char **argv)
+int	invalid_arguments(t_pushswap *ps, int argc, char **argv)
 {
-        if (argc <= 2)
-                return (1);
-        argc--;
-        argv++;
-        if (!verify_argv(argv))
-                return (write(2, "Error\n", 6));
-        if (!is_int(argv))
-                return (write(2, "Error\n", 6));
-        if (is_duplicated(argv))
-                return (write(2, "Error\n", 6));
-        if (!in_stack(ps, argc--, argv))
-                return (1);
-        return (0);
+	if (argc <= 2)
+		return (1);
+	argc--;
+	argv++;
+	if (!verify_argv(argv))
+		return (write(2, "Error\n", 6));
+	if (!is_int(argv))
+		return (write(2, "Error\n", 6));
+	if (is_duplicated(argv))
+		return (write(2, "Error\n", 6));
+	if (!in_stack(ps, argc--, argv))
+		return (1);
+	return (0);
 }
 
 void	verify_instruction(t_pushswap *ps, char *terminal)
@@ -99,18 +99,18 @@ void	reader(t_pushswap *ps)
 	free(terminal);
 }
 
-int     main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-        t_pushswap      ps;
+	t_pushswap	ps;
 
-        ps = (t_pushswap){0};
-        if (invalid_arguments(&ps, argc, argv))
-                return (1);
+	ps = (t_pushswap){0};
+	if (invalid_arguments(&ps, argc, argv))
+		return (1);
 	reader(&ps);
 	if (is_sorted(ps.a) && !ps.b)
 		write(1, "OK\n", 3);
 	else
 		write(1, "KO\n", 3);
-        free_everything(&ps);
-        return (0);
+	free_everything(&ps);
+	return (0);
 }

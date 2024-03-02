@@ -5,7 +5,7 @@ SRCS	=	main.c             \
 		first_algorithm.c  \
 		second_algorithm.c \
 		third_algorithm.c  \
-		turkish.c          \
+		cost.c             \
 		s_operations.c     \
 		p_operations.c     \
 		r_operations.c     \
@@ -14,6 +14,7 @@ SRCS	=	main.c             \
 		operations_utils.c \
 		array_utils.c      \
 		range_utils.c      \
+		range_utils2.c     \
 		utils.c            \
 		print_stacks.c
 

@@ -6,7 +6,7 @@
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 15:11:33 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/03/02 10:41:42 by jazevedo         ###   ########.fr       */
+/*   Updated: 2024/03/06 09:25:13 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct s_stack
 {
 	int				value;
 	int				index;
+	int				target;
 	struct s_stack	*next;
 }	t_stack;
 

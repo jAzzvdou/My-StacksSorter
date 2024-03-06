@@ -6,7 +6,7 @@
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 15:09:31 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/03/05 23:41:43 by jazevedo         ###   ########.fr       */
+/*   Updated: 2024/03/06 09:44:13 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,16 @@ int	main(int argc, char **argv)
 		else
 			third_algorithm(&ps, size);
 	}
+
 	//write(1, "\n", 1);
 	print_stacks(&ps);
+	if (!is_sorted(ps.a))
+		write(1, "KO\n", 3);
+	else
+		write(1, "OK\n", 3);
+	//printf("Size Stack B: %d\n", stack_size(ps.b));
+	//printf("Size Stack A: %d\n", stack_size(ps.a));
+
 	free_everything(&ps);
 	return (0);
 }

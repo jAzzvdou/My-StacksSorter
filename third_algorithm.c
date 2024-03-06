@@ -6,7 +6,7 @@
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 13:18:23 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/03/06 09:56:24 by jazevedo         ###   ########.fr       */
+/*   Updated: 2024/03/06 18:54:21 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,71 +101,6 @@ int	last_index(t_stack *stack)
 	return (stack->index);
 }
 
-int	smallest_in_a(t_stack *a)
-{
-	int	smallest;
-
-	smallest = a->index;
-	while (a)
-	{
-		if (a->index < smallest)
-			smallest = a->index;
-		a = a->next;
-	}
-	return (smallest);
-}
-
-void	set_target(t_stack *a, t_stack *b)
-{
-	int	best_match_index;
-	t_stack	*tmp_a;
-
-	while (b)
-	{
-		best_match_index = 2147483647;
-		tmp_a = a;
-		while (tmp_a)
-		{
-			if (tmp_a->index > b->index
-				&& tmp_a->index < best_match_index)
-				best_match_index = tmp_a->index;
-			tmp_a = tmp_a->next;
-		}
-		if (best_match_index == 2147483647)
-			b->target = smallest_in_a(tmp_a); 
-		else
-			b->target = best_match_index;
-		b = b->next;
-	}
-}
-
-void	print_target(t_stack *b)
-{
-	while (b)
-	{
-		printf("b->index: %d, b->target: %d\n", b->index, b->target);
-		b = b->next;
-	}
-}
-
-int	best_cost(t_pushswap *ps)
-{
-	int	cost;
-	int	best_cost;
-	t_stack	*tmp_b;
-
-	best_cost = 2147483647;
-	tmp_b = ps->b;
-	while (tmp_b)
-	{
-		cost = cost_to_push(ps, ps->a, tmp_b->index);
-		if (cost < best_cost)
-			best_cost = cost;
-		tmp_b = tmp_b->next;
-	}
-	return (best_cost);
-}
-
 void	third_algorithm(t_pushswap *ps, int size)
 {
 	int	*sorted_arr;
@@ -208,8 +143,4 @@ void	third_algorithm(t_pushswap *ps, int size)
 			rb(ps);
 		}
 	}
-	set_target(ps->a, ps->b);
-	// preciso criar uma função que calcule qual o melhor custo de empilhar index b em cima do index a.
-	int cost = best_cost(ps);
-	printf("Cost: %d\n", cost);
 }

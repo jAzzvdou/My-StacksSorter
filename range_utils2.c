@@ -6,7 +6,7 @@
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 13:17:47 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/03/04 13:17:49 by jazevedo         ###   ########.fr       */
+/*   Updated: 2024/03/05 23:43:18 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	set_range(int size)
 
 	range = 1;
 	if (size >= 500)
-		range = 50;
+		range = 35;
 	else if (size >= 100)
 		range = 12;
 	return (range);

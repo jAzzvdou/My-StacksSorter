@@ -6,7 +6,7 @@
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 15:09:31 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/03/04 16:51:44 by jazevedo         ###   ########.fr       */
+/*   Updated: 2024/03/05 23:41:43 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int	main(int argc, char **argv)
 			third_algorithm(&ps, size);
 	}
 	//write(1, "\n", 1);
-	//print_stacks(&ps);
+	print_stacks(&ps);
 	free_everything(&ps);
 	return (0);
 }

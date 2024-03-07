@@ -55,7 +55,7 @@ int				is_duplicated(char **argv);
 
 //----------STACK----------//
 int				push_new(t_stack **stack, int value);
-int				in_stack(t_pushswap *pushswap, int argc, char **argv);
+int				put_in_stack(t_pushswap *pushswap, int argc, char **argv);
 int				is_sorted(t_stack *stack);
 int				stack_size(t_stack *stack);
 

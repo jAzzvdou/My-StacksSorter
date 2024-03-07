@@ -101,6 +101,94 @@ int	last_index(t_stack *stack)
 	return (stack->index);
 }
 
+void	order(t_pushswap *ps, int *up, int *down)
+{
+	while (*up > 1)
+	{
+		ra(ps);
+		*up = *up - 1;
+		*down = *down + 1;
+	}
+	pa(ps);
+	if (*up == 1)
+		sa(ps);
+}
+
+int	sort_a(t_pushswap *ps, int *up, int *down, int biggest)
+{
+	if (stack_size(ps->a) == 0)
+		return (0);
+	if (in_stack(ps->a, biggest, &up) != -1)
+	{
+		*up *up - 1;
+		return (1);
+	}
+	else if (stack_size(ps->a) && last_index(ps->a) == biggest)
+	{
+		ra(ps);
+		*down = *down - 1;
+		return (1);
+	}
+	return (0);
+}
+
+int	can_push(t_pushswap *ps, int *up, int *down)
+{
+	if (stack_size(ps->b) == 0)
+		return (0);
+	if (ps->b->index < ps->a->index
+		&& (*down == 0 || ps->b->index > last_index(ps->a)))
+	{
+		pa(ps);
+		*up = *up + 1;
+		return (1);
+	}
+	else if (*down == 0 || ps->b->index > last_index(ps->a))
+	{
+		while (*up && ps->b->index > ps->a->index)
+		{
+			ra(ps);
+			*up = *up - 1;
+			*down - *down + 1;
+		}
+		pa(ps);
+		*up = *up + 1;
+		return (1);
+	}
+	return (0);
+}
+
+int	to_top(t_pushswap *ps, int biggest)
+{
+}
+
+void	b_to_a(t_pushswap *ps, int *sorted_arr, int size)
+{
+	int	i;
+	int	up;
+	int	down;
+
+	up = 0;
+	down = 0;
+	i = size - 1;
+	while (stack_size(ps->b) || up || down)
+	{
+		if (sort_a(ps, &up, &down, sorted_arr[i]))
+			i--;
+		else if (stack_size(ps->b) && sorted_arr[i] == ps->b->index)
+		{
+			order(ps, &up, &down);
+			i--;
+		}
+		else if (can_push(ps, &up, &down))
+			continue ;
+		else if (to_top(ps, sorted_arr[i]) //NOT DONE.
+			continue ;
+		else
+			i--;
+	}
+}
+
 void	third_algorithm(t_pushswap *ps, int size)
 {
 	int	*sorted_arr;
@@ -111,36 +199,8 @@ void	third_algorithm(t_pushswap *ps, int size)
 	ps->r = start_range(ps, size);
 	ps->smallest_index = smallest_in_range(ps);
 	a_to_b(ps, sorted_arr, size);
-
-	int last = -1;
-	int locked = 0;
 	pa(ps);
-	while (ps->b->index != last)
-	{
-		while (ps->b->index < ps->a->index)
-		{
-			if (ps->b->next->index < ps->b->index)
-				sb(ps);
-			pa(ps);
-		}
-		if (ps->b->index > last_index(ps->a))
-		{
-			pa(ps);
-			ra(ps);
-		}
-		if (ps->b->index > ps->a->index && ps->b->index < ps->a->next->index)
-		{
-			pa(ps);
-			sa(ps);
-		}
-		else if (ps->b->index > ps->a->index && ps->b->index < last_index(ps->a))
-		{
-			if (!locked)
-			{
-				locked = 1;
-				last = ps->b->index;
-			}
-			rb(ps);
-		}
-	}
+	pa(ps);
+	pa(ps);
+	b_to_a(ps, sorted_arr, stack_size(ps->b)); 	
 }

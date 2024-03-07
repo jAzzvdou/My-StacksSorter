@@ -52,7 +52,7 @@ int	invalid_arguments(t_pushswap *ps, int argc, char **argv)
 		return (write(2, "Error\n", 6));
 	if (is_duplicated(argv))
 		return (write(2, "Error\n", 6));
-	if (!in_stack(ps, argc--, argv))
+	if (!put_in_stack(ps, argc--, argv))
 		return (1);
 	return (0);
 }
@@ -70,11 +70,8 @@ int	main(int argc, char **argv)
 	//write(1, "\n", 1);
 	if (!is_sorted(ps.a) || ps.b)
 	{
-		if (size == 2)
-		{
-			if (ps.a->value > ps.a->next->value)
-				sa(&ps);
-		}
+		if (size == 2 && ps.a->value > ps.a->next->value)
+			sa(&ps);
 		else if (size == 3)
 			first_algorithm(&ps);
 		else if (size <= 5)

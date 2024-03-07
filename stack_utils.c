@@ -25,7 +25,7 @@ int	push_new(t_stack **stack, int value)
 	return (1);
 }
 
-int	in_stack(t_pushswap *pushswap, int argc, char **argv)
+int	put_in_stack(t_pushswap *pushswap, int argc, char **argv)
 {
 	int	value;
 

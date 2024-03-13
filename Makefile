@@ -5,18 +5,14 @@ SRCS	=	main.c             \
 		first_algorithm.c  \
 		second_algorithm.c \
 		third_algorithm.c  \
-		cost.c             \
-		s_operations.c     \
-		p_operations.c     \
-		r_operations.c     \
-		rr_operations.c    \
+		chunk.c            \
+		s.c                \
+		p.c                \
+		r.c                \
+		rr.c               \
 		stack_utils.c      \
 		operations_utils.c \
-		array_utils.c      \
-		range_utils.c      \
-		range_utils2.c     \
 		utils.c            \
-		print_stacks.c
 
 SRCS_BONUS	=	checker.c             \
 			checker_utils.c       \

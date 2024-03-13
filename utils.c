@@ -6,7 +6,7 @@
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 09:30:54 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/02/05 15:19:52 by jazevedo         ###   ########.fr       */
+/*   Updated: 2024/03/13 13:31:41 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,26 @@ long	ft_atol(const char *nptr)
 		nptr++;
 	}
 	return (nb * mult);
+}
+
+void	ft_bzero(void *s, size_t n)
+{
+	char	*zero_s;
+
+	zero_s = s;
+	while (n--)
+		zero_s[n] = 0;
+}
+
+void	*ft_calloc(size_t nmemb, size_t size)
+{
+	size_t	i;
+	void	*ptr;
+
+	i = nmemb * size;
+	ptr = malloc(i);
+	if (!ptr)
+		return (NULL);
+	ft_bzero(ptr, i);
+	return (ptr);
 }

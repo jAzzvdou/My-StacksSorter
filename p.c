@@ -1,40 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   first_algorithm.c                                  :+:      :+:    :+:   */
+/*   p.c                                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/13 12:14:59 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/03/13 12:24:24 by jazevedo         ###   ########.fr       */
+/*   Created: 2024/02/01 09:57:14 by jazevedo          #+#    #+#             */
+/*   Updated: 2024/03/13 02:38:45 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	first_algorithm(t_pushswap *ps)
+void	pa(t_pushswap *ps)
 {
-	int	f;
-	int	s;
-	int	t;
+	if (!ps->b || !ps->b->size)
+		return ;
+	push(ps->b, ps->a);
+	write(1, "pa\n", 3);
+}
 
-	f = ps->a->top->value;
-	s = ps->a->top->prev->value;
-	t = ps->a->top->prev->prev->value;
-	if (f < s && f < t && s > t)
-	{
-		sa(ps);
-		ra(ps);
-	}
-	else if (f > s && f < t && s < t)
-		sa(ps);
-	else if (f < s && f > t && s > t)
-		rra(ps);
-	else if (f > s && f > t && s < t)
-		ra(ps);
-	else
-	{
-		sa(ps);
-		rra(ps);
-	}
-}	
+void	pb(t_pushswap *ps)
+{
+	if (!ps->a || !ps->a->size)
+		return ;
+	push(ps->a, ps->b);
+	write(1, "pb\n", 3);
+}

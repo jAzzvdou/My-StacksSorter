@@ -6,7 +6,7 @@
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 15:11:33 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/03/06 09:25:13 by jazevedo         ###   ########.fr       */
+/*   Updated: 2024/03/13 16:35:07 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,34 +16,30 @@
 # include <unistd.h>
 # include <stdlib.h>
 
-//----------RANGE INFO----------//
-typedef struct s_range_info
-{
-	int		size;
-	int		start;
-	int		end;
-	int		*index_arr;
-}			t_range_info;
+# include <stdio.h>
 
-//----------STACKS INFO----------//
+//----------STRUCT NODE----------//
+typedef struct s_node
+{
+	struct s_node	*next;
+	struct s_node	*prev;
+	int				value;
+}			t_node;
+
+//----------STRUCT STACK----------//
 typedef struct s_stack
 {
-	int				value;
-	int				index;
-	int				target;
-	struct s_stack	*next;
-}	t_stack;
+	t_node			*top;
+	t_node			*bot;
+	int				size;
+}			t_stack;
 
 //----------STRUCT MAIN----------//
 typedef struct s_pushswap
 {
 	t_stack			*a;
 	t_stack			*b;
-	t_range_info	*r;
-	int				start;
-	int				end;
-	int				range;
-	int				smallest_index;
+	int				*sorted;
 }			t_pushswap;
 
 //----------ARGUMENTS----------//
@@ -54,57 +50,50 @@ int				is_int(char **argv);
 int				is_duplicated(char **argv);
 
 //----------STACK----------//
-int				push_new(t_stack **stack, int value);
-int				put_in_stack(t_pushswap *pushswap, int argc, char **argv);
+void				put_in_stack(t_pushswap *pushswap, int argc, char **argv);
 int				is_sorted(t_stack *stack);
-int				stack_size(t_stack *stack);
 
 //----------ALGORITHMS----------//
-void			first_algorithm(t_pushswap *ps);
-void			second_algorithm(t_pushswap *ps);
-void			third_algorithm(t_pushswap *ps, int size);
-
-//----------COST CALCULATOR----------//
-int				cost_to_top(t_stack *stack, int index);
-int				cheapest_in_range(t_pushswap *ps);
+void				first_algorithm(t_pushswap *ps);
+void				second_algorithm(t_pushswap *ps);
+void				t(t_pushswap *ps);
 
 //----------OPERATIONS----------//
-int				sa(t_pushswap *pushswap);
-int				sb(t_pushswap *pushswap);
-int				ss(t_pushswap *pushswap);
+void				sa(t_pushswap *ps);
+void				sb(t_pushswap *ps);
+void				ss(t_pushswap *ps);
 
-int				pa(t_pushswap *pushswap);
-int				pb(t_pushswap *pushswap);
+void				pa(t_pushswap *ps);
+void				pb(t_pushswap *ps);
 
-int				ra(t_pushswap *pushswap);
-int				rb(t_pushswap *pushswap);
-int				rr(t_pushswap *pushswap);
+void				ra(t_pushswap *ps);
+void				rb(t_pushswap *ps);
+void				rr(t_pushswap *ps);
 
-int				rra(t_pushswap *pushswap);
-int				rrb(t_pushswap *pushswap);
-int				rrr(t_pushswap *pushswap);
+void				rra(t_pushswap *ps);
+void				rrb(t_pushswap *ps);
+void				rrr(t_pushswap *ps);
 
 //----------OPERATIONS UTILS----------//
-int				swap(t_stack **stack);
-int				push(t_stack **stack_from, t_stack **stack_to);
-int				rotate(t_stack **stack);
-int				reverse_rotate(t_stack **stack);
+void				insert_node(t_node *node, t_stack *stack);
+t_node			*pop_node(t_stack *stack);
+void				push(t_stack *stack1, t_stack *stack2);
+void				swap(t_stack *stack);
+void				rotate(t_stack *stack);
+void				reverse_rotate(t_stack *stack);
 
 //----------ARRAY UTILS----------//
-int				*stack_to_array(t_stack *stack);
 int				*bubblesort(int *stack, int size);
-void			set_index(t_stack *stack, int *array, int size);
 
-//----------RANGE UTILS----------//
-int				set_range(int size);
-t_range_info	*start_range(t_pushswap *ps, int size);
-void			remove_from_range(t_pushswap *ps);
-t_range_info	*next_range(t_pushswap *ps, int *sorted_arr, int size);
+//----------CHUNK UTILS----------//
+void	set_chunk(int *start, int *end, int size);
+int	set_range(int size);
 
 //----------UTILS----------//
 size_t			ft_strlen(const char *str);
 int				ft_atoi(const char *nptr);
 long			ft_atol(const char *nptr);
-int				print_stacks(t_pushswap *ps);
+void			ft_bzero(void *s, size_t n);
+void			*ft_calloc(size_t nmemb, size_t size);
 
 #endif //PUSH_SWAP

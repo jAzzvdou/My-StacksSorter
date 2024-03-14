@@ -1,5 +1,7 @@
 NAME	=	push_swap
 
+NAME_BONUS	=	checker	
+
 SRCS	=	main.c             \
 		verify_argvs.c     \
 		array.c            \
@@ -15,12 +17,21 @@ SRCS	=	main.c             \
 		rr.c               \
 		stack_utils.c      \
 		operations_utils.c \
-		utils.c            \
+		utils.c
 
-SRCS_BONUS	=	checker.c             \
-			checker_utils.c       \
-			get_next_line.c       \
-			get_next_line_utils.c
+SRCS_BONUS	=	checker_bonus.c             \
+			verify_argvs_bonus.c        \
+			array_bonus.c               \
+			utils_bonus.c               \
+			stack_utils_bonus.c         \
+			s_bonus.c                   \
+			p_bonus.c                   \
+			r_bonus.c                   \
+			rr_bonus.c                  \
+			operations_utils_bonus.c    \
+			checker_utils_bonus.c       \
+			get_next_line_bonus.c       \
+			get_next_line_utils_bonus.c
 
 OBJS	=	$(SRCS:.c=.o)
 
@@ -37,6 +48,9 @@ all: $(NAME)
 $(NAME): $(OBJS)
 		$(CC) -o $(NAME) $(OBJS)
 
+$(NAME_BONUS): $(OBJS_BONUS)
+		$(CC) -o $(NAME_BONUS) $(OBJS_BONUS)
+
 .c.o:
 		$(CC) $(CFLAGS) -c $<
 
@@ -48,7 +62,6 @@ fclean: clean
 
 re: fclean all
 
-bonus: $(OBJS_BONUS)
-		$(CC) -o $(NAME) $(OBJS_BONUS)
+bonus: $(NAME_BONUS)
 
 .PHONY: all clean fclean re bonus

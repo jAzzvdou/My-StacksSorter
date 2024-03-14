@@ -6,7 +6,7 @@
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 11:37:55 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/03/14 12:29:22 by jazevedo         ###   ########.fr       */
+/*   Updated: 2024/03/14 13:13:41 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	main(int argc, char **argv)
 	if (invalid_arguments(&ps, argc, argv))
 		return (1);
 	reader(&ps);
-	if (is_sorted(ps.a) && !ps.b)
+	if (is_sorted(ps.a) && !ps.b->size)
 		write(1, "OK\n", 3);
 	else
 		write(1, "KO\n", 3);

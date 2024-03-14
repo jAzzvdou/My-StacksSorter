@@ -39,7 +39,7 @@ OBJS_BONUS	=	$(SRCS_BONUS:.c=.o)
 
 CC	=	cc
 
-CFLAGS	=	-Wall -Werror -Wextra -ggdb3
+CFLAGS	=	-Wall -Werror -Wextra
 
 RM	=	rm -rf 
 
@@ -58,7 +58,7 @@ clean:
 		$(RM) $(OBJS) $(OBJS_BONUS)
 
 fclean: clean
-	$(RM) $(NAME)
+	$(RM) $(NAME) $(NAME_BONUS)
 
 re: fclean all
 

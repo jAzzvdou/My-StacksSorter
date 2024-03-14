@@ -6,7 +6,7 @@
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 12:22:49 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/03/14 12:27:55 by jazevedo         ###   ########.fr       */
+/*   Updated: 2024/03/14 14:05:30 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,12 +73,12 @@ char	*get_next_line(int fd)
 	int			bytes;
 
 	bytes = 1;
-	buffer = malloc(sizeof(char) * (1 + 1));
+	buffer = malloc(sizeof(char) * (10 + 1));
 	if (!buffer)
 		return (NULL);
 	while (bytes > 0 && (!wardrobe || !ft_strchr(wardrobe, '\n')))
 	{
-		bytes = read(fd, buffer, 1);
+		bytes = read(fd, buffer, 10);
 		if (bytes == -1)
 		{
 			free(buffer);

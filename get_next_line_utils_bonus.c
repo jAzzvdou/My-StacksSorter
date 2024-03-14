@@ -6,7 +6,7 @@
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 12:23:34 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/03/14 12:25:46 by jazevedo         ###   ########.fr       */
+/*   Updated: 2024/03/14 14:09:40 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	if (!s1 && !s2)
 		return (NULL);
 	new_s = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
-	if (new_s == NULL)
+	if (!new_s)
 		return (NULL);
 	i = 0;
 	while (s1 && *s1)

@@ -6,7 +6,7 @@
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 12:40:00 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/03/14 12:40:16 by jazevedo         ###   ########.fr       */
+/*   Updated: 2024/03/14 14:11:08 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	sa(t_pushswap *ps)
 	if (!ps->a || ps->a->size < 2)
 		return ;
 	swap(ps->a);
-	write(1, "sa\n", 3);
 }
 
 void	sb(t_pushswap *ps)
@@ -25,7 +24,6 @@ void	sb(t_pushswap *ps)
 	if (!ps->b || ps->b->size < 2)
 		return ;
 	swap(ps->b);
-	write(1, "sb\n", 3);
 }
 
 void	ss(t_pushswap *ps)
@@ -34,5 +32,4 @@ void	ss(t_pushswap *ps)
 		return ;
 	sa(ps);
 	sb(ps);
-	write(1, "ss\n", 3);
 }

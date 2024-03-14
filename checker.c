@@ -6,7 +6,7 @@
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 01:06:00 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/03/01 21:57:21 by jazevedo         ###   ########.fr       */
+/*   Updated: 2024/03/14 08:57:43 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,27 +59,27 @@ int	invalid_arguments(t_pushswap *ps, int argc, char **argv)
 
 void	verify_instruction(t_pushswap *ps, char *terminal)
 {
-	if (!ft_strncmp(terminal, "sa\n", 4))
+	if (!ft_strncmp(terminal, "sa\n", 3))
 		sa(ps);
-	else if (!ft_strncmp(terminal, "sb\n", 4))
+	else if (!ft_strncmp(terminal, "sb\n", 3))
 		sb(ps);
-	else if (!ft_strncmp(terminal, "ss\n", 4))
+	else if (!ft_strncmp(terminal, "ss\n", 3))
 		ss(ps);
-	else if (!ft_strncmp(terminal, "pa\n", 4))
+	else if (!ft_strncmp(terminal, "pa\n", 3))
 		pa(ps);
-	else if (!ft_strncmp(terminal, "pb\n", 4))
+	else if (!ft_strncmp(terminal, "pb\n", 3))
 		pb(ps);
-	else if (!ft_strncmp(terminal, "ra\n", 4))
+	else if (!ft_strncmp(terminal, "ra\n", 3))
 		ra(ps);
-	else if (!ft_strncmp(terminal, "rb\n", 4))
+	else if (!ft_strncmp(terminal, "rb\n", 3))
 		rb(ps);
-	else if (!ft_strncmp(terminal, "rr\n", 4))
+	else if (!ft_strncmp(terminal, "rr\n", 3))
 		rr(ps);
-	else if (!ft_strncmp(terminal, "rra\n", 5))
+	else if (!ft_strncmp(terminal, "rra\n", 4))
 		rra(ps);
-	else if (!ft_strncmp(terminal, "rrb\n", 5))
+	else if (!ft_strncmp(terminal, "rrb\n", 4))
 		rrb(ps);
-	else if (!ft_strncmp(terminal, "rrr\n", 5))
+	else if (!ft_strncmp(terminal, "rrr\n", 4))
 		rrr(ps);
 	else
 		write(2, "Error\n", 6);

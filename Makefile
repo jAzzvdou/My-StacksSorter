@@ -2,9 +2,12 @@ NAME	=	push_swap
 
 SRCS	=	main.c             \
 		verify_argvs.c     \
+		array.c            \
 		first_algorithm.c  \
 		second_algorithm.c \
 		third_algorithm.c  \
+		a_to_b.c           \
+		b_to_a.c           \
 		chunk.c            \
 		s.c                \
 		p.c                \

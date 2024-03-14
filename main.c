@@ -6,7 +6,7 @@
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 15:09:31 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/03/13 16:35:36 by jazevedo         ###   ########.fr       */
+/*   Updated: 2024/03/14 09:53:02 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,15 @@ void	free_everything(t_pushswap *ps)
 		ps->a->top = ps->a->top->prev;
 		free(tmp);
 	}
+	free(ps->a);
 	while (ps->b->top)
 	{
 		tmp = ps->b->top;
 		ps->b->top = ps->b->top->prev;
 		free(tmp);
 	}
+	free(ps->b);
+	free(ps->sorted);
 }
 
 int	argvs_size(char **argv)
@@ -55,20 +58,6 @@ int	invalid_arguments(t_pushswap *ps, int argc, char **argv)
 	return (0);
 }
 
-int	is_sorted(t_stack *stack)
-{
-	t_node	*tmp;
-
-	tmp = stack->top;
-	while (tmp->prev)
-	{
-		if (tmp->value > tmp->prev->value)
-			return (0);
-		tmp = tmp->prev;
-	}
-	return (1);
-}
-
 int	main(int argc, char **argv)
 {
 	t_pushswap	ps;
@@ -76,7 +65,6 @@ int	main(int argc, char **argv)
 	ps = (t_pushswap){0};
 	if (invalid_arguments(&ps, argc, argv))
 		return (1);
-
 	if (!is_sorted(ps.a) || ps.b->size)
 	{
 		if (ps.a->size == 2 && ps.a->top->value > ps.a->top->prev->value)
@@ -86,12 +74,8 @@ int	main(int argc, char **argv)
 		else if (ps.a->size <= 5)
 			second_algorithm(&ps);
 		else
-			t(&ps);
+			third_algorithm(&ps);
 	}
-	if (is_sorted(ps.a))
-		write(1, "OK\n", 3);
-	else
-		write(1, "KO\n", 3);
 	free_everything(&ps);
 	return (0);
 }

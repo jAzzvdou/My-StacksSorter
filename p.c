@@ -6,11 +6,16 @@
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 09:57:14 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/03/13 02:38:45 by jazevedo         ###   ########.fr       */
+/*   Updated: 2024/03/14 09:41:49 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	push(t_stack *stack1, t_stack *stack2)
+{
+	insert_node(pop(stack1), stack2);
+}
 
 void	pa(t_pushswap *ps)
 {

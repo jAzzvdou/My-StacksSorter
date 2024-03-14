@@ -6,18 +6,17 @@
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 12:27:28 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/03/13 12:42:23 by jazevedo         ###   ########.fr       */
+/*   Updated: 2024/03/14 09:44:17 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-
 int	find_lowest(t_pushswap *ps)
 {
-	int	i;
-	int	pos;
-	int	lowest;
+	int		i;
+	int		pos;
+	int		lowest;
 	t_node	*a;
 
 	a = ps->a->top;

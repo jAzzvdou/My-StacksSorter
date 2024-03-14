@@ -6,50 +6,24 @@
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 09:49:11 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/03/13 13:17:32 by jazevedo         ###   ########.fr       */
+/*   Updated: 2024/03/14 09:52:26 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	*argv_to_array(char **argv, int size)
+int	is_sorted(t_stack *stack)
 {
-	int	i;
-	int	*array;
+	t_node	*tmp;
 
-	array = malloc(sizeof(int) * size);
-	if (!array)
-		return (NULL);
-	i = 0;
-	while (argv[i])
+	tmp = stack->top;
+	while (tmp->prev)
 	{
-		array[i] = ft_atoi(argv[i]);
-		i++;
+		if (tmp->value > tmp->prev->value)
+			return (0);
+		tmp = tmp->prev;
 	}
-	return (array);
-}
-
-int	*bubblesort(int *array, int size)
-{
-	int	i;
-	int	ii;
-	int	tmp;
-
-	i = -1;
-	while (++i < size)
-	{
-		ii = i;
-		while (++ii < size)
-		{
-			if (array[i] > array[ii])
-			{
-				tmp = array[i];
-				array[i] = array[ii];
-				array[ii] = tmp;
-			}
-		}
-	}
-	return (array);
+	return (1);
 }
 
 t_stack	*init_stack(void)
@@ -80,7 +54,7 @@ t_node	*new_node(int value)
 
 t_stack	*create_stack(int *array, int size)
 {
-	int	i;
+	int		i;
 	t_stack	*stack;
 	t_node	*node;
 

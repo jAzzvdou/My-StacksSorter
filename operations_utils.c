@@ -6,7 +6,7 @@
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 15:19:46 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/03/13 02:53:14 by jazevedo         ###   ########.fr       */
+/*   Updated: 2024/03/14 09:41:24 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,6 @@ t_node	*pop(t_stack *stack)
 	popnode->prev = NULL;
 	stack->size = stack->size - 1;
 	return (popnode);
-}
-
-void	push(t_stack *stack1, t_stack *stack2)
-{
-	insert_node(pop(stack1), stack2);
 }
 
 void	swap(t_stack *stack)

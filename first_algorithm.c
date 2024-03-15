@@ -6,7 +6,7 @@
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 15:43:05 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/03/14 15:43:07 by jazevedo         ###   ########.fr       */
+/*   Updated: 2024/03/14 23:02:20 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,4 @@ void	first_algorithm(t_pushswap *ps)
 		sa(ps);
 		rra(ps);
 	}
-}	
+}

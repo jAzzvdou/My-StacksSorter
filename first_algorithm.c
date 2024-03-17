@@ -18,9 +18,9 @@ void	first_algorithm(t_pushswap *ps)
 	int	s;
 	int	t;
 
-	f = ps->a->top->value;
-	s = ps->a->top->prev->value;
-	t = ps->a->top->prev->prev->value;
+	f = ps->a->top->index;
+	s = ps->a->top->prev->index;
+	t = ps->a->top->prev->prev->index;
 	if (f < s && f < t && s > t)
 	{
 		sa(ps);

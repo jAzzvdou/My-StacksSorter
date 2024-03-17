@@ -21,6 +21,7 @@ typedef struct s_node
 {
 	struct s_node	*next;
 	struct s_node	*prev;
+	int				index;
 	int				value;
 }			t_node;
 
@@ -37,7 +38,6 @@ typedef struct s_pushswap
 {
 	t_stack			*a;
 	t_stack			*b;
-	int				*sorted;
 }			t_pushswap;
 
 //----------ARGUMENTS----------//

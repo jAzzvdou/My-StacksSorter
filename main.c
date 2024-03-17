@@ -30,7 +30,6 @@ void	free_everything(t_pushswap *ps)
 		free(tmp);
 	}
 	free(ps->b);
-	free(ps->sorted);
 }
 
 int	argvs_size(char **argv)

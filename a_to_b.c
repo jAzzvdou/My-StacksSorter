@@ -15,7 +15,7 @@
 int	push_and_rotate(t_pushswap *ps, int size)
 {
 	pb(ps);
-	if (ps->b->top->value < (size / 2))
+	if (ps->b->top->index < (size / 2))
 		rb(ps);
 	return (1);
 }
@@ -27,7 +27,7 @@ int	inside_range(t_pushswap *ps, int start, int end)
 	i = start;
 	while (i <= end)
 	{
-		if (ps->a->top->value == ps->sorted[i])
+		if (ps->a->top->index == i)
 			return (i);
 		i++;
 	}

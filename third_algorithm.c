@@ -49,16 +49,16 @@ void	b_to_a(t_pushswap *ps, int size)
 	i = size - 1;
 	while (ps->b->size || up > 0 || down > 0)
 	{
-		if (sort_a(ps, &up, &down, ps->sorted[i]))
+		if (sort_a(ps, &up, &down, i))
 			i--;
-		else if (ps->b->size && ps->sorted[i] == ps->b->top->value)
+		else if (ps->b->size && i == ps->b->top->index)
 		{
 			order(ps, &up, &down);
 			i--;
 		}
 		else if (canpush(ps, &up, &down))
 			continue ;
-		else if (to_top(ps, ps->sorted[i]))
+		else if (to_top(ps, i))
 			continue ;
 		else
 			i--;

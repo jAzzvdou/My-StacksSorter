@@ -70,6 +70,23 @@ t_stack	*create_stack(int *array, int size)
 	return (stack);
 }
 
+void	set_index(t_node *node, int *sorted, int size)
+{
+	int	i;
+
+	while (node)
+        {
+                i = 0;
+                while (i < size)
+                {
+                        if (node->value == sorted[i])
+                                node->index = i;
+			i++;
+                }
+                node = node->prev;
+        }
+}
+
 void	put_in_stack(t_pushswap *ps, int argc, char **argv)
 {
 	int	size;
@@ -79,5 +96,5 @@ void	put_in_stack(t_pushswap *ps, int argc, char **argv)
 	array = argv_to_array(argv, size);
 	ps->a = create_stack(array, size);
 	ps->b = init_stack();
-	ps->sorted = bubblesort(array, size);
+	set_index(ps->a->top, bubblesort(array, size), size);
 }

@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-int	inside_stack(t_stack *stack, int value, int size)
+int	inside_stack(t_stack *stack, int index, int size)
 {
 	int		i;
 	int		nb;
@@ -23,8 +23,8 @@ int	inside_stack(t_stack *stack, int value, int size)
 	i = 0;
 	while (i < size && node)
 	{
-		nb = node->value;
-		if (nb == value)
+		nb = node->index;
+		if (nb == index)
 			return (i);
 		i++;
 		node = node->prev;
@@ -41,7 +41,7 @@ int	sort_a(t_pushswap *ps, int *up, int *down, int highest)
 		*up = *up - 1;
 		return (1);
 	}
-	else if (ps->a->size && ps->a->bot->value == highest)
+	else if (ps->a->size && ps->a->bot->index == highest)
 	{
 		rra(ps);
 		*down = *down - 1;
@@ -67,16 +67,16 @@ int	canpush(t_pushswap *ps, int *up, int *down)
 {
 	if (!ps->b->size)
 		return (0);
-	if (ps->b->top->value < ps->a->top->value
-		&& (*down == 0 || ps->b->top->value > ps->a->bot->value))
+	if (ps->b->top->index < ps->a->top->index
+		&& (*down == 0 || ps->b->top->index > ps->a->bot->index))
 	{
 		pa(ps);
 		*up = *up + 1;
 		return (1);
 	}
-	else if (*down == 0 || ps->b->top->value > ps->a->bot->value)
+	else if (*down == 0 || ps->b->top->index > ps->a->bot->index)
 	{
-		while (*up && ps->b->top->value > ps->a->top->value)
+		while (*up && ps->b->top->index > ps->a->top->index)
 		{
 			ra(ps);
 			*up = *up - 1;

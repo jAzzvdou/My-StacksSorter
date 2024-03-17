@@ -20,14 +20,14 @@ int	find_lowest(t_pushswap *ps)
 	t_node	*a;
 
 	a = ps->a->top;
-	lowest = a->value;
+	lowest = a->index;
 	pos = 1;
 	i = 1;
 	while (a)
 	{
-		if (a->value < lowest)
+		if (a->index < lowest)
 		{
-			lowest = a->value;
+			lowest = a->index;
 			pos = i;
 		}
 		a = a->prev;

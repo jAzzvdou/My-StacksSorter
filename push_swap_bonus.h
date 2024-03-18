@@ -6,7 +6,7 @@
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 15:43:29 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/03/14 15:43:30 by jazevedo         ###   ########.fr       */
+/*   Updated: 2024/03/18 11:43:28 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ typedef struct s_pushswap
 {
 	t_stack			*a;
 	t_stack			*b;
-	int				*sorted;
 }			t_pushswap;
 
 //----------ARGUMENTS----------//

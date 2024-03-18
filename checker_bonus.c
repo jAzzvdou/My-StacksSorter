@@ -6,7 +6,7 @@
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 15:42:51 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/03/14 15:42:54 by jazevedo         ###   ########.fr       */
+/*   Updated: 2024/03/18 11:43:34 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	free_everything(t_pushswap *ps)
 		free(tmp);
 	}
 	free(ps->b);
-	free(ps->sorted);
 }
 
 int	argvs_size(char **argv)

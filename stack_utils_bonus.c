@@ -6,7 +6,7 @@
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 15:43:52 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/03/14 15:43:53 by jazevedo         ###   ########.fr       */
+/*   Updated: 2024/03/18 11:43:44 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,5 +79,5 @@ void	put_in_stack(t_pushswap *ps, int argc, char **argv)
 	array = argv_to_array(argv, size);
 	ps->a = create_stack(array, size);
 	ps->b = init_stack();
-	ps->sorted = bubblesort(array, size);
+	free(array);
 }

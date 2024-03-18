@@ -6,7 +6,7 @@
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 15:43:12 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/03/14 15:43:13 by jazevedo         ###   ########.fr       */
+/*   Updated: 2024/03/18 13:55:58 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	argvs_size(char **argv)
 
 int	invalid_arguments(t_pushswap *ps, int argc, char **argv)
 {
-	if (argc <= 2)
+	if (argc < 2)
 		return (1);
 	argv++;
 	if (!verify_argv(argv))

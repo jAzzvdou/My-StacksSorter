@@ -6,7 +6,7 @@
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 15:42:42 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/03/14 15:42:44 by jazevedo         ###   ########.fr       */
+/*   Updated: 2024/03/18 11:28:32 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,21 @@ int	*bubblesort(int *array, int size)
 		}
 	}
 	return (array);
+}
+
+void	set_index(t_node *node, int *sorted, int size)
+{
+	int	i;
+
+	while (node)
+	{
+		i = 0;
+		while (i < size)
+		{
+			if (node->value == sorted[i])
+				node->index = i;
+			i++;
+		}
+		node = node->prev;
+	}
 }

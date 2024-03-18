@@ -6,7 +6,7 @@
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 15:43:30 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/03/14 15:43:37 by jazevedo         ###   ########.fr       */
+/*   Updated: 2024/03/18 11:30:32 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ void			reverse_rotate(t_stack *stack);
 //----------ARRAY UTILS----------//
 int				*argv_to_array(char **argv, int size);
 int				*bubblesort(int *stack, int size);
+void			set_index(t_node *node, int *sorted, int size);
 
 //----------CHUNK UTILS----------//
 void			set_chunk(int *start, int *end, int size);

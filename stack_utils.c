@@ -6,7 +6,7 @@
 /*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 15:43:53 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/03/14 15:43:54 by jazevedo         ###   ########.fr       */
+/*   Updated: 2024/03/18 11:27:37 by jazevedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,23 +68,6 @@ t_stack	*create_stack(int *array, int size)
 		insert_node(node, stack);
 	}
 	return (stack);
-}
-
-void	set_index(t_node *node, int *sorted, int size)
-{
-	int	i;
-
-	while (node)
-        {
-                i = 0;
-                while (i < size)
-                {
-                        if (node->value == sorted[i])
-                                node->index = i;
-			i++;
-                }
-                node = node->prev;
-        }
 }
 
 void	put_in_stack(t_pushswap *ps, int argc, char **argv)

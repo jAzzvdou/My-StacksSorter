@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/14 15:43:30 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/03/18 11:30:32 by jazevedo         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
@@ -101,10 +89,10 @@ void			set_chunk(int *start, int *end, int size);
 int				set_range(int size);
 
 //----------UTILS----------//
-size_t			ft_strlen(const char *str);
-int				ft_atoi(const char *nptr);
-long			ft_atol(const char *nptr);
-void			ft_bzero(void *s, size_t n);
-void			*ft_calloc(size_t nmemb, size_t size);
+size_t			my_strlen(const char *str);
+int				my_atoi(const char *nptr);
+long			my_atol(const char *nptr);
+void			my_bzero(void *s, size_t n);
+void			*my_calloc(size_t nmemb, size_t size);
 
 #endif //PUSH_SWAP

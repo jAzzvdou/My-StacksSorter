@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   array.c                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/14 15:42:42 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/03/18 11:28:32 by jazevedo         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "push_swap.h"
 
 int	*argv_to_array(char **argv, int size)
@@ -23,7 +11,7 @@ int	*argv_to_array(char **argv, int size)
 	i = 0;
 	while (argv[i])
 	{
-		array[i] = ft_atoi(argv[i]);
+		array[i] = my_atoi(argv[i]);
 		i++;
 	}
 	return (array);

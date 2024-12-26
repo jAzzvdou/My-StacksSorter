@@ -1,18 +1,6 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   utils_bonus.c                                      :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/14 15:43:56 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/03/14 15:43:58 by jazevedo         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "push_swap_bonus.h"
 
-size_t	ft_strlen(const char *str)
+size_t	my_strlen(const char *str)
 {
 	size_t	i;
 
@@ -24,7 +12,7 @@ size_t	ft_strlen(const char *str)
 	return (i);
 }
 
-int	ft_atoi(const char *nptr)
+int	my_atoi(const char *nptr)
 {
 	int	nb;
 	int	mult;
@@ -45,7 +33,7 @@ int	ft_atoi(const char *nptr)
 	return (nb * mult);
 }
 
-long	ft_atol(const char *nptr)
+long	my_atol(const char *nptr)
 {
 	long	nb;
 	int		mult;
@@ -66,7 +54,7 @@ long	ft_atol(const char *nptr)
 	return (nb * mult);
 }
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+int	my_strncmp(const char *s1, const char *s2, size_t n)
 {
 	size_t	i;
 

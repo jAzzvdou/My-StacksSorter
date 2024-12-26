@@ -1,18 +1,6 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/14 15:43:58 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/03/14 15:43:59 by jazevedo         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "push_swap.h"
 
-size_t	ft_strlen(const char *str)
+size_t	my_strlen(const char *str)
 {
 	size_t	i;
 
@@ -22,7 +10,7 @@ size_t	ft_strlen(const char *str)
 	return (i);
 }
 
-int	ft_atoi(const char *nptr)
+int	my_atoi(const char *nptr)
 {
 	int	nb;
 	int	mult;
@@ -43,7 +31,7 @@ int	ft_atoi(const char *nptr)
 	return (nb * mult);
 }
 
-long	ft_atol(const char *nptr)
+long	my_atol(const char *nptr)
 {
 	long	nb;
 	int		mult;
@@ -64,7 +52,7 @@ long	ft_atol(const char *nptr)
 	return (nb * mult);
 }
 
-void	ft_bzero(void *s, size_t n)
+void	my_bzero(void *s, size_t n)
 {
 	char	*zero_s;
 
@@ -73,7 +61,7 @@ void	ft_bzero(void *s, size_t n)
 		zero_s[n] = 0;
 }
 
-void	*ft_calloc(size_t nmemb, size_t size)
+void	*my_calloc(size_t nmemb, size_t size)
 {
 	size_t	i;
 	void	*ptr;
@@ -82,6 +70,6 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	ptr = malloc(i);
 	if (!ptr)
 		return (NULL);
-	ft_bzero(ptr, i);
+	my_bzero(ptr, i);
 	return (ptr);
 }

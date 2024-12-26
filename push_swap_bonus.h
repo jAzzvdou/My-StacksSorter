@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   push_swap_bonus.h                                  :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/14 15:43:29 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/03/18 11:43:28 by jazevedo         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #ifndef PUSH_SWAP_BONUS_H
 # define PUSH_SWAP_BONUS_H
 
@@ -79,15 +67,15 @@ int				*argv_to_array(char **argv, int size);
 int				*bubblesort(int *stack, int size);
 
 //----------UTILS----------//
-size_t			ft_strlen(const char *str);
-int				ft_atoi(const char *nptr);
-long			ft_atol(const char *nptr);
-int				ft_strncmp(const char *s1, const char *s2, size_t n);
+size_t			my_strlen(const char *str);
+int				my_atoi(const char *nptr);
+long			my_atol(const char *nptr);
+int				my_strncmp(const char *s1, const char *s2, size_t n);
 
 //----------BONUS----------//
-char			*ft_strchr(const char *s, int c);
-char			*ft_strdup(const char *s);
-char			*ft_strjoin(char *s1, char *s2);
+char			*my_strchr(const char *s, int c);
+char			*my_strdup(const char *s);
+char			*my_strjoin(char *s1, char *s2);
 char			*get_next_line(int fd);
 void			reader(t_pushswap *ps);
 

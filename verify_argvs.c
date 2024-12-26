@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   verify_argvs.c                                     :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/14 15:44:02 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/03/14 15:44:32 by jazevedo         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "push_swap.h"
 
 int	is_number(int nb)
@@ -50,8 +38,8 @@ int	is_int(char **argv)
 	i = -1;
 	while (argv[++i])
 	{
-		if (ft_strlen(argv[i]) > 11 || ft_atol(argv[i]) > 2147483647
-			|| ft_atol(argv[i]) < -2147483648)
+		if (my_strlen(argv[i]) > 11 || my_atol(argv[i]) > 2147483647
+			|| my_atol(argv[i]) < -2147483648)
 			return (0);
 	}
 	return (1);
@@ -67,7 +55,7 @@ int	is_duplicated(char **argv)
 	{
 		ii = i;
 		while (argv[++ii])
-			if (ft_atoi(argv[i]) == ft_atoi(argv[ii]))
+			if (my_atoi(argv[i]) == my_atoi(argv[ii]))
 				return (1);
 	}
 	return (0);

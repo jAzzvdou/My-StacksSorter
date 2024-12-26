@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   third_algorithm.c                                  :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: jazevedo <jazevedo@student.42.rio>         +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/14 15:43:55 by jazevedo          #+#    #+#             */
-/*   Updated: 2024/03/14 15:43:56 by jazevedo         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "push_swap.h"
 
 void	a_to_b(t_pushswap *ps, int size)
@@ -19,7 +7,7 @@ void	a_to_b(t_pushswap *ps, int size)
 	int	ivalue;
 	int	*pushed_value;
 
-	pushed_value = ft_calloc(size, sizeof(int));
+	pushed_value = my_calloc(size, sizeof(int));
 	set_chunk(&start, &end, size);
 	while (ps->a->size > 3)
 	{
